@@ -22,8 +22,3 @@ with open(os.path.join(BASE_DIR, '../config/journeychurch/ALLOWED_HOSTS')) as fi
 # DATABASES
 with open(os.path.join(BASE_DIR, '../config/journeychurch/DATABASE')) as file:
     DATABASE = [line.strip() for line in file if not line == None]
-
-
-# STATIC_ROOT
-with open(os.path.join(BASE_DIR, '../config/journeychurch/STATIC_ROOT')) as file:
-    STATIC_ROOT = [line.strip() for line in file if not line == None]
