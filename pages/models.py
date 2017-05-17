@@ -102,7 +102,7 @@ class Page(models.Model):
     link_text = models.CharField(max_length=100, blank=True)
 
     # Background image (uploads to /media/uploads/backgrounds/)
-    image = models.ImageField(upload_to="uploads/backgrounds/", max_length=200)
+    image = models.ImageField(upload_to="backgrounds/", max_length=200)
 
     # Associated navigation menu with page
     navigation = models.ForeignKey(NavigationMenu, on_delete=models.CASCADE)
