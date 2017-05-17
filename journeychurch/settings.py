@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from journeychurch import config
+from journeychurch.config import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,19 +21,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.SECRET_KEY
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config.DEBUG
+DEBUG = debug
 
 
-ALLOWED_HOSTS = config.ALLOWED_HOSTS
+ALLOWED_HOSTS = allowed_hosts
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'pages.apps.PagesConfig'
+    'pages.apps.PagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'journeychurch.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config.DATABASE[0],
-        'NAME': config.DATABASE[1],
-        'USER': config.DATABASE[2],
-        'PASSWORD': config.DATABASE[3]
+        'ENGINE': database[0],
+        'NAME': database[1],
+        'USER': database[2],
+        'PASSWORD': database[3]
     }
 }
 
@@ -125,3 +125,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+
+# Media uploads
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

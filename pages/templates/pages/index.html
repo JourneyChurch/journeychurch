@@ -1,0 +1,17 @@
+<html lang="en">
+  <head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <h3>{{ subtitle }}</h3>
+    <a href="{{ link }}">{{ link_text }}</a>
+    <ul>
+      {% for link in navigation_links %}
+        <li><a href="{{ link.url }}">{{ link.display_title }}</a></li>
+      {% endfor %}
+    </ul>
+    <img src="{{ image }}">
+  </body>
+</html>
