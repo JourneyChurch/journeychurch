@@ -6,7 +6,7 @@ class PagesAdmin(admin.ModelAdmin):
     """
     Manages admin for pages
     """
-    prepopulated_fields = {'slug': ('display_title',)}
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class NavigationMenusAdmin(admin.ModelAdmin):

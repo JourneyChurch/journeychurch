@@ -9,10 +9,12 @@
     <h1>{{ title }}</h1>
     <h3>{{ subtitle }}</h3>
     {% if link_url %}<a href="{{ link_url }}">{{ link_text }}</a>{% endif %}
+    {% if navigation_items != None %}
     <ul>
-      {% for item in navigation_items %}
-        <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %}>{{ item.title }}</a></li>
-      {% endfor %}
+        {% for item in navigation_items %}
+          <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %}>{{ item.title }}</a></li>
+        {% endfor %}
     </ul>
+    {% endif %}
     <img src="{{ image }}">
   {% endblock %}

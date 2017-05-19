@@ -14,13 +14,18 @@ def index(request, slug=None):
     else:
         page = get_object_or_404(Page, slug=slug)
 
+    if page.menu == None:
+        navigation_items = None
+    else:
+        navigation_items = page.menu.navigationitem_set.all()
+
     context = {
         'title': page.display_title,
         'subtitle': page.subtitle,
         'link_url': page.link_url,
         'link_text': page.link_text,
         'image': page.image.url,
-        'navigation_items': page.navigation.navigationitem_set.all()
+        'navigation_items': navigation_items
     }
 
     return render(request, 'pages/index.html', context)

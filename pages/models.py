@@ -93,7 +93,7 @@ class Page(models.Model):
     image = models.ImageField(upload_to="backgrounds/", max_length=200)
 
     # Associated navigation menu with page
-    navigation = models.ForeignKey(NavigationMenu, on_delete=models.CASCADE)
+    menu = models.ForeignKey(NavigationMenu, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.title
