@@ -9,7 +9,7 @@ def index(request, slug=None):
     # Homepage has a slug of home. If there is no slug(/) then get the home page
     if slug is None:
         page = get_object_or_404(Page, slug='home')
-        
+
     # Otherwise get the page that matches the slug
     else:
         page = get_object_or_404(Page, slug=slug)

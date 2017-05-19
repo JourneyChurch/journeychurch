@@ -25,15 +25,6 @@ class NavigationItem(models.Model):
     # Title display on page
     display_title = models.CharField(max_length=100)
 
-    # Type of url for navigation item
-    TYPES = (
-        ("link", "Link"),
-        ("email", "Email"),
-        ("telephone", "Telephone")
-    )
-
-    type_url = models.CharField(max_length=9, choices=TYPES, default="link")
-
     # Url to link to
     url = models.URLField(max_length=2000)
 

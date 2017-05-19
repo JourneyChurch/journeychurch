@@ -9,7 +9,7 @@
     <a href="{{ link }}">{{ link_text }}</a>
     <ul>
       {% for link in navigation_links %}
-        <li><a href="{{ link.url }}">{{ link.display_title }}</a></li>
+        <li><a href="{{ link.url }}" {% if link.new_tab %}target="_blank"{% endif %}>{{ link.display_title }}</a></li>
       {% endfor %}
     </ul>
     <img src="{{ image }}">
