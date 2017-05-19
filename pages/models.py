@@ -26,7 +26,7 @@ class NavigationItem(models.Model):
     display_title = models.CharField(max_length=100)
 
     # Url to link to
-    url = models.URLField(max_length=2000)
+    url = models.CharField(max_length=2000)
 
     # New tab
     new_tab = models.BooleanField(default=False)
@@ -87,7 +87,7 @@ class Page(models.Model):
     subtitle = models.CharField(max_length=100, blank=True)
 
     # Button link to a URL
-    link = models.URLField(max_length=2000, blank=True)
+    link = models.CharField(max_length=2000, blank=True)
 
     # Button link text
     link_text = models.CharField(max_length=100, blank=True)
