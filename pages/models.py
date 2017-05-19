@@ -19,11 +19,8 @@ class NavigationItem(models.Model):
     Navigation item that belongs to a menu.
     """
 
-    # Title of navigation item, must be unique (not displayed, just for organization)
-    title = models.CharField(max_length=100, unique=True)
-
-    # Title display on page
-    display_title = models.CharField(max_length=100)
+    # Title of navigation item
+    title = models.CharField(max_length=100)
 
     # Url to link to
     url = models.CharField(max_length=2000)
@@ -87,7 +84,7 @@ class Page(models.Model):
     subtitle = models.CharField(max_length=100, blank=True)
 
     # Button link to a URL
-    link = models.CharField(max_length=2000, blank=True)
+    link_url = models.CharField(max_length=2000, blank=True)
 
     # Button link text
     link_text = models.CharField(max_length=100, blank=True)

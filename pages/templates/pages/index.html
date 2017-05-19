@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+<!-- Main template for basic pages -->
+{% extends "pages/base.html" %}
 
   {% block title %}
     {{ title }}
@@ -7,10 +8,10 @@
   {% block content %}
     <h1>{{ title }}</h1>
     <h3>{{ subtitle }}</h3>
-    <a href="{{ link }}">{{ link_text }}</a>
+    {% if link_url %}<a href="{{ link_url }}">{{ link_text }}</a>{% endif %}
     <ul>
-      {% for link in navigation_links %}
-        <li><a href="{{ link.url }}" {% if link.new_tab %}target="_blank"{% endif %}>{{ link.display_title }}</a></li>
+      {% for item in navigation_items %}
+        <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %}>{{ item.title }}</a></li>
       {% endfor %}
     </ul>
     <img src="{{ image }}">

@@ -1,0 +1,6 @@
+<!-- Global Navigation across all pages -->
+<ul>
+{% for item in navigation_items %}
+  <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %}>{{ item.title }}</a></li>
+{% endfor %}
+</ul>

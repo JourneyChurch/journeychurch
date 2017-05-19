@@ -17,10 +17,10 @@ def index(request, slug=None):
     context = {
         'title': page.display_title,
         'subtitle': page.subtitle,
-        'link': page.link,
+        'link_url': page.link_url,
         'link_text': page.link_text,
         'image': page.image.url,
-        'navigation_links': page.navigation.navigationitem_set.all()
+        'navigation_items': page.navigation.navigationitem_set.all()
     }
 
     return render(request, 'pages/index.html', context)

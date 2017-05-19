@@ -20,7 +20,7 @@ class NavigationItemsAdmin(admin.ModelAdmin):
     """
     Manages admin for navigation items
     """
-    pass
+    list_display = ('title', 'menu')
 
 
 admin.site.register(Page, PagesAdmin)
