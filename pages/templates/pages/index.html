@@ -1,20 +1,25 @@
 <!-- Main template for basic pages -->
 {% extends "pages/base.html" %}
+{% load navigation %}
 
-  {% block title %}
-    {{ title }}
-  {% endblock %}
+{% block title %}
+  {{ title }}
+{% endblock %}
 
-  {% block content %}
-    <h1>{{ title }}</h1>
-    <h3>{{ subtitle }}</h3>
-    {% if link_url %}<a href="{{ link_url }}">{{ link_text }}</a>{% endif %}
-    {% if navigation_items != None %}
-    <ul>
-        {% for item in navigation_items %}
-          <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %}>{{ item.title }}</a></li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    <img src="{{ image }}">
-  {% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>{{ title }}</h1>
+        <h3>{{ subtitle }}</h3>
+        {% if link_url %}<a href="{{ link_url }}">{{ link_text }}</a>{% endif %}
+
+        {% if menu != None %}
+          {% navigation title=menu.title inline=True %}
+        {% endif %}
+
+        <img src="{{ image }}" class="img-responsive">
+      </div>
+    </div>
+  </div>
+{% endblock %}
