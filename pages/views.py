@@ -17,7 +17,7 @@ def index(request, slug=None):
         'subtitle': page.subtitle,
         'link_url': page.link_url,
         'link_text': page.link_text,
-        'image': page.image.url,
+        'background_image': page.background_image.url,
         'menu': page.menu,
         'social': page.social
     }

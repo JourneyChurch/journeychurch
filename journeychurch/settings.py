@@ -33,6 +33,7 @@ ALLOWED_HOSTS = allowed_hosts
 # Application definition
 
 INSTALLED_APPS = [
+    'tinymce',
     'pages.apps.PagesConfig',
     'social.apps.SocialConfig',
     'django.contrib.admin',
