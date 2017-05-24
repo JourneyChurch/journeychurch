@@ -34,6 +34,7 @@ ALLOWED_HOSTS = allowed_hosts
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
+    'social.apps.SocialConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

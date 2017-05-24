@@ -1,4 +1,5 @@
 from django.db import models
+from social.models import Social
 
 
 class NavigationMenu(models.Model):
@@ -94,6 +95,9 @@ class Page(models.Model):
 
     # Associated navigation menu with page
     menu = models.ForeignKey(NavigationMenu, on_delete=models.CASCADE, null=True, blank=True)
+
+    # Social media links
+    social = models.ForeignKey(Social, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.title

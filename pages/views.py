@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from pages.models import Page, NavigationMenu, NavigationItem
+from pages.models import Page
 
 
 # Gets page by slug
@@ -18,7 +18,8 @@ def index(request, slug=None):
         'link_url': page.link_url,
         'link_text': page.link_text,
         'image': page.image.url,
-        'menu': page.menu
+        'menu': page.menu,
+        'social': page.social
     }
 
     return render(request, 'pages/index.html', context)

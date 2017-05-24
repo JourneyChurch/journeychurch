@@ -1,0 +1,8 @@
+<!-- embeds social media -->
+<ul class="list-unstyled list-inline">
+  {% if social.facebook is not None %}<li><a href="{{ social.facebook }}" target="_blank">Facebook</a></li>{% endif %}
+  {% if social.twitter is not None %}<li><a href="{{ social.twitter }}" target="_blank">Twitter</a></li>{% endif %}
+  {% if social.instagram is not None %}<li><a href="{{ social.instagram }}" target="_blank">Instagram</a></li>{% endif %}
+  {% if social.youtube is not None %}<li><a href="{{ social.youtube }}" target="_blank">Youtube</a></li>{% endif %}
+  {% if social.snapchat is not None %}<li><a href="{{ social.snapchat }}" target="_blank">Snapchat</a></li>{% endif %}
+</ul>

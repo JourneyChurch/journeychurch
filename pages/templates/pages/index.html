@@ -1,6 +1,7 @@
 <!-- Main template for basic pages -->
 {% extends "pages/base.html" %}
 {% load navigation %}
+{% load social %}
 
 {% block title %}
   {{ title }}
@@ -14,8 +15,12 @@
         <h3>{{ subtitle }}</h3>
         {% if link_url %}<a href="{{ link_url }}">{{ link_text }}</a>{% endif %}
 
-        {% if menu != None %}
+        {% if menu is not None %}
           {% navigation title=menu.title inline=True %}
+        {% endif %}
+
+        {% if social is not None %}
+          {% social title="Main" %}
         {% endif %}
 
         <img src="{{ image }}" class="img-responsive">
