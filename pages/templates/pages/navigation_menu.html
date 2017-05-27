@@ -1,0 +1,8 @@
+<!-- embeds navigation menu -->
+{% if navigation_items %}
+  <ul class="list-unstyled {% if inline is True %}list-inline{% endif %}">
+  {% for item in navigation_items %}
+    <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %}>{{ item.title }}</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}

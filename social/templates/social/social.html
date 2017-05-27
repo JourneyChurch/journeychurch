@@ -1,8 +1,10 @@
 <!-- embeds social media -->
-<ul class="list-unstyled list-inline">
-  {% if social.facebook is not None %}<li><a href="{{ social.facebook }}" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>{% endif %}
-  {% if social.twitter is not None %}<li><a href="{{ social.twitter }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>{% endif %}
-  {% if social.instagram is not None %}<li><a href="{{ social.instagram }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>{% endif %}
-  {% if social.youtube is not None %}<li><a href="{{ social.youtube }}" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>{% endif %}
-  {% if social.snapchat is not None %}<li><a href="{{ social.snapchat }}" target="_blank"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></a></li>{% endif %}
-</ul>
+{% if social %}
+  <ul class="list-unstyled list-inline">
+    {% if social.facebook %}<li><a href="{{ social.facebook }}" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>{% endif %}
+    {% if social.twitter %}<li><a href="{{ social.twitter }}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>{% endif %}
+    {% if social.instagram %}<li><a href="{{ social.instagram }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>{% endif %}
+    {% if social.youtube %}<li><a href="{{ social.youtube }}" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>{% endif %}
+    {% if social.snapchat %}<li><a href="{{ social.snapchat }}" target="_blank"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></a></li>{% endif %}
+  </ul>
+{% endif %}

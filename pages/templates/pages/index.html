@@ -1,7 +1,8 @@
 <!-- Main template for basic pages -->
 {% extends "pages/base.html" %}
-{% load navigation %}
+{% load navigation_menu %}
 {% load social %}
+{% load content %}
 
 {% block title %}
   {{ title }}
@@ -12,19 +13,28 @@
     <div class="row">
       <div class="col-sm-12">
         <h1>{{ title }}</h1>
-        <h3>{{ subtitle }}</h3>
-        {% if link_url %}<a href="{{ link_url }}">{{ link_text }}</a>{% endif %}
 
-        {% if menu is not None %}
-          {% navigation title=menu.title inline=True %}
+        {% if subtitle %}
+          <h3>{{ subtitle }}</h3>
         {% endif %}
 
-        {% if social is not None %}
+        {% if link_url and link_text %}<a href="{{ link_url }}">{{ link_text }}</a>{% endif %}
+
+        {% if navigation_menu %}
+          {% navigation_menu title=navigation_menu.title inline=True %}
+        {% endif %}
+
+        {% if social %}
           {% social title="Main" %}
         {% endif %}
 
-        <img src="{{ background_image }}" class="img-responsive">
+        {% if background_image %}<img src="{{ background_image }}" class="img-responsive">{% endif %}
       </div>
     </div>
   </div>
+
+  {% if content %}
+    {% content sections=content %}
+  {% endif %}
+
 {% endblock %}

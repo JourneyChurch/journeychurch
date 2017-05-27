@@ -1,0 +1,7 @@
+{% if section.type == "default" %}
+  {% default section=section.object %}
+{% elif section.type == "twocolumn" }
+  {% two_column section=section.object %}
+{% elif section.type == "threecolumn" }
+  {% three_column section=section.object %}
+{% endif %}

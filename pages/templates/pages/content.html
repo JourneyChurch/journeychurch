@@ -1,0 +1,17 @@
+{% load sections.default %}
+{% load sections.two_column %}
+{% load sections.three_column %}
+
+<div class="container">
+  <div class="row">
+    {% for section in sections %}
+      {% if section.type == "default" %}
+        {% default section=section.object %}
+      {% elif section.type == "twocolumn" %}
+        {% two_column section=section.object %}
+      {% elif section.type == "threecolumn" %}
+        {% three_column section=section.object %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

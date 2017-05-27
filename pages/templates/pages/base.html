@@ -1,4 +1,4 @@
-{% load navigation %}
+{% load navigation_menu %}
 {% load social %}
 
 <html lang="en">
@@ -21,7 +21,7 @@
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              {% navigation title="Main" inline=False %}
+              {% navigation_menu title="Main" inline=False %}
               {% social title="Main" %}
             </div>
           </div>
@@ -38,7 +38,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            {% navigation title="Footer" inline=True %}
+            {% navigation_menu title="Footer" inline=True %}
           </div>
         </div>
       </div>
