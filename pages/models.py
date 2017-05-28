@@ -60,7 +60,7 @@ class Page(models.Model):
     display_title = models.CharField(max_length=100)
 
     # Slug based off of display title
-    slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
+    slug = models.SlugField(max_length=200, unique=True, null=True)
 
     # Sub title under display title
     subtitle = models.CharField(max_length=100, blank=True, null=True)
@@ -94,10 +94,13 @@ class Content(models.Model):
     """
 
     # Title of content
-    title = models.CharField(max_length=100, null=True)
+    title = models.CharField(max_length=100, unique=True, null=True)
 
     # Display Title
     display_title = models.CharField(max_length=100, blank=True, null=True)
+
+    # Slug for section - used in html id
+    slug = models.SlugField(max_length=200, unique=True, null=True)
 
     # Page that content belongs to
     page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
@@ -109,7 +112,7 @@ class Content(models.Model):
     background_color = models.CharField(max_length=6, default="f3f3f3")
 
     # Order of section
-    order = models.CharField(max_length=100, unique=True, default="Z")
+    order = models.CharField(max_length=100, null=True)
 
     # Determine the section type
     def section_type(self):
@@ -135,7 +138,7 @@ class SectionDefault(Content):
     content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
 
     # main content
-    content = HTMLField(max_length=60000, blank=True, null=True)
+    content = HTMLField(max_length=60000, null=True)
 
     # main image
     image = models.ImageField(upload_to="content/", max_length=200, blank=True, null=True)

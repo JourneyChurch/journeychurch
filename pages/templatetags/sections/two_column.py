@@ -11,6 +11,7 @@ def two_column(section):
 
     context = {
         "title": section.display_title,
+        "slug": section.slug,
         "background_image": section.background_image,
         "background_color": section.background_color,
         "title_left": section.title_left,

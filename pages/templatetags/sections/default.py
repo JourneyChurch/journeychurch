@@ -11,6 +11,7 @@ def default(section):
 
     context = {
         "title": section.display_title,
+        "slug": section.slug,
         "background_image": section.background_image,
         "background_color": section.background_color,
         "content": section.content,

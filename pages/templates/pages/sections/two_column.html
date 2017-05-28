@@ -1,7 +1,13 @@
-<div class="col-sm-6">
-  {{ content_left }}
-</div>
+<section id="section-{{ slug }}">
+  {% if display_title %}<div class="col-xs-12">{{ display_title }}</div>{% endif %}
 
-<div class="col-sm-6">
-  {{ content_right }}
-</div>
+  <div class="col-sm-6">
+    {{ content_left|safe }}
+  </div>
+
+  <div class="col-sm-6">
+    {{ content_right|safe }}
+  </div>
+
+  <div class="clearfix"></div>
+</section>

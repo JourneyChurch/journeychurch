@@ -1,11 +1,15 @@
-<div class="col-sm-4">
-  {{ content_left }}
-</div>
+<section id="section-{{ slug }}">
+  <div class="col-md-4">
+    {{ content_left|safe }}
+  </div>
 
-<div class="col-sm-4">
-  {{ content_center }}
-</div>
+  <div class="col-md-4">
+    {{ content_center|safe }}
+  </div>
 
-<div class="col-sm-4">
-  {{ content_right }}
-</div>
+  <div class="col-md-4">
+    {{ content_right|safe }}
+  </div>
+
+  <div class="clearfix"></div>
+</section>
