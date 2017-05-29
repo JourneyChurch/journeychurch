@@ -1,13 +1,21 @@
-<section id="section-{{ slug }}">
-  {% if display_title %}<div class="col-xs-12">{{ display_title }}</div>{% endif %}
+<section id="section-{{ slug }}" {% if center_text %}class="text-center"{% endif %} {% if background_color or background_image %}style="{% if background_color %}background-color: #{{ background_color }};{% endif %}{% if background_image %}background-image: url('{{ background_image.url }}');{% endif %}"{% endif %}>
+  <div class="container">
+    <div class="row">
+      {% if display_title %}<div class="col-xs-12">{{ display_title }}</div>{% endif %}
 
-  <div class="col-sm-6">
-    {{ content_left|safe }}
+      <div class="col-sm-6">
+        {% if image_left %}<img src="{{ image_left.url }}" class="img-responsive">{% endif %}
+        {% if title_left %}<h3>{{ title_left }}</h3>{% endif %}
+        {% if content_left %}{{ content_left|safe }}{% endif %}
+      </div>
+
+      <div class="col-sm-6">
+        {% if image_right %}<img src="{{ image_right.url }}" class="img-responsive">{% endif %}
+        {% if title_right %}<h3>{{ title_right }}</h3>{% endif %}
+        {% if content_right %}{{ content_right|safe }}{% endif %}
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
   </div>
-
-  <div class="col-sm-6">
-    {{ content_right|safe }}
-  </div>
-
-  <div class="clearfix"></div>
 </section>

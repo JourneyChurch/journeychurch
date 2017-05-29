@@ -109,7 +109,7 @@ class Content(models.Model):
     background_image = models.ImageField(upload_to="backgrounds/", max_length=200, blank=True, null=True)
 
     # Background color in hex
-    background_color = models.CharField(max_length=6, default="f3f3f3")
+    background_color = models.CharField(max_length=6, blank=True, null=True)
 
     # Order of section
     order = models.CharField(max_length=100, null=True)

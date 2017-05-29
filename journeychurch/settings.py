@@ -121,6 +121,10 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Set file permissions on static files to 0644. Default for an OS is 0600.
+FILE_UPLOAD_PERMISSIONS = 0o644
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 

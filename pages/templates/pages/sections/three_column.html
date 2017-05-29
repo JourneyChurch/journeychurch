@@ -1,15 +1,27 @@
-<section id="section-{{ slug }}">
-  <div class="col-md-4">
-    {{ content_left|safe }}
-  </div>
+<section id="section-{{ slug }}" {% if center_text %}class="text-center"{% endif %} {% if background_color or background_image %}style="{% if background_color %}background-color: #{{ background_color }};{% endif %}{% if background_image %}background-image: url('{{ background_image.url }}');{% endif %}"{% endif %}>
+  <div class="container">
+    <div class="row">
+      {% if title %}<div class="col-xs-12"><h2>{{ title }}</h2></div>{% endif %}
 
-  <div class="col-md-4">
-    {{ content_center|safe }}
-  </div>
+      <div class="col-md-4">
+        {% if image_left %}<img src="{{ image_left.url }}" class="img-responsive">{% endif %}
+        {% if title_left %}<h3>{{ title_left }}</h3>{% endif %}
+        {% if content_left %}{{ content_left|safe }}{% endif %}
+      </div>
 
-  <div class="col-md-4">
-    {{ content_right|safe }}
-  </div>
+      <div class="col-md-4">
+        {% if image_center %}<img src="{{ image_center.url }}" class="img-responsive">{% endif %}
+        {% if title_center %}<h3>{{ title_center }}</h3>{% endif %}
+        {% if content_center %}{{ content_center|safe }}{% endif %}
+      </div>
 
-  <div class="clearfix"></div>
+      <div class="col-md-4">
+        {% if image_right %}<img src="{{ image_left.url }}" class="img-responsive">{% endif %}
+        {% if title_right %}<h3>{{ title_right }}</h3>{% endif %}
+        {% if content_right %}{{ content_right|safe }}{% endif %}
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </section>

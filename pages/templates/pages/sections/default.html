@@ -1,7 +1,13 @@
-<section id="section-{{ slug }}">
-  <div class="col-xs-12">
-    {{ content|safe }}
-  </div>
+<section id="section-{{ slug }}" {% if background_color or background_image %}style="{% if background_color %}background-color: #{{ background_color }};{% endif %}{% if background_image %}background-image: url('{{ background_image.url }}');{% endif %}"{% endif %}>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        {% if title %}<h2>{{ title }}</h2>{% endif %}
+        {{ content|safe }}
+        {% if image %}<img src="{{ image.url }}" class="img-responsive">{% endif %}
+      </div>
 
-  <div class="clearfix"></div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </section>
