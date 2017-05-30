@@ -35,7 +35,7 @@ class NavigationItem(models.Model):
     new_tab = models.BooleanField(default=False)
 
     # Order of navigation item in menu
-    order = models.CharField(max_length=100, unique=True)
+    order = models.CharField(max_length=100, null=True)
 
     # Foreign key to relate a navigation item to a menu
     menu = models.ForeignKey(NavigationMenu, on_delete=models.CASCADE)

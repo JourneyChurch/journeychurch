@@ -16,8 +16,8 @@
   </head>
 
   <body>
-    <header>
-      <nav>
+    <header role="banner">
+      <nav role="navigation">
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
@@ -29,16 +29,28 @@
       </nav>
     </header>
 
-    <main>
+    <main role="main">
       {% block content %}
       {% endblock %}
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       <div class="container">
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-sm-6 col-md-3">
+            &copy; {% now "Y" %} Journey Church
+          </div>
+
+          <div class="col-sm-6 col-md-3">
             {% navigation_menu title="Footer" inline=True %}
+          </div>
+
+          <div class="col-sm-6 col-md-3">
+            {% social title="Main" %}
+          </div>
+
+          <div class="col-sm-6 col-md-3">
+            <a class="btn btn-default" href="#">How Can We Help?</a>
           </div>
         </div>
       </div>
