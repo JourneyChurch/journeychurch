@@ -1,5 +1,6 @@
 from django.db import models
 from social.models import Social
+from video.models import VideoGroup, Video
 
 # Tinymce: wysiwyg editor for django admin
 # https://github.com/aljosa/django-tinymce
@@ -18,6 +19,10 @@ class NavigationMenu(models.Model):
     # Representation in admin
     def __str__(self):
         return self.title
+
+    class Meta:
+        # Plural name used in admin
+        verbose_name_plural = "Navigation - Menus"
 
 
 class NavigationItem(models.Model):
@@ -44,6 +49,10 @@ class NavigationItem(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        # Plural name used in admin
+        verbose_name_plural = "Navigation - Items"
+
 
 class Page(models.Model):
     """
@@ -59,7 +68,7 @@ class Page(models.Model):
     # Title display on page
     display_title = models.CharField(max_length=100)
 
-    # Slug based off of display title
+    # Slug based off of title
     slug = models.SlugField(max_length=200, unique=True, null=True)
 
     # Sub title under display title
@@ -143,6 +152,13 @@ class SectionDefault(Content):
     # main image
     image = models.ImageField(upload_to="content/", max_length=200, blank=True, null=True)
 
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Default Template"
+
 
 class SectionTwoColumn(Content):
     """
@@ -172,6 +188,13 @@ class SectionTwoColumn(Content):
 
     # Center all text
     center_text = models.BooleanField(default=False)
+
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Two Column Template"
 
 
 class SectionThreeColumn(Content):
@@ -211,3 +234,48 @@ class SectionThreeColumn(Content):
 
     # Center all text
     center_text = models.BooleanField(default=False)
+
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Three Column Template"
+
+
+class SectionVideoGroup(Content):
+    """
+    Section for video group
+    """
+
+    # Multi table inheritance pointer to Content
+    content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
+
+    # Video Group
+    video_group = models.ForeignKey(VideoGroup, on_delete=models.CASCADE)
+
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Video Group"
+
+
+class SectionVideo(Content):
+    """
+    Section for video
+    """
+
+    # Multi table inheritance pointer to Content
+    content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
+
+    # Video Group
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Video"

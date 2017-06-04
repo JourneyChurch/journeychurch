@@ -1,5 +1,5 @@
 from django.contrib import admin
-from pages.models import Page, NavigationMenu, NavigationItem, SectionDefault, SectionTwoColumn, SectionThreeColumn
+from pages.models import Page, NavigationMenu, NavigationItem, SectionDefault, SectionTwoColumn, SectionThreeColumn, SectionVideoGroup, SectionVideo
 
 
 class PagesAdmin(admin.ModelAdmin):
@@ -21,6 +21,7 @@ class NavigationItemsAdmin(admin.ModelAdmin):
     """
     Manages admin for navigation items
     """
+    # List title and menu that item belongs to
     list_display = ('title', 'menu')
 
 
@@ -28,8 +29,11 @@ class SectionDefaultAdmin(admin.ModelAdmin):
     """
     Manages admin for default sections
     """
-    pass
+    # Prepopulates slug field from title
     prepopulated_fields = {'slug': ('title',)}
+
+    # List title and page that section belongs to
+    list_display = ('title', 'page')
 
 
 class SectionTwoColumnAdmin(admin.ModelAdmin):
@@ -39,6 +43,9 @@ class SectionTwoColumnAdmin(admin.ModelAdmin):
     # Prepopulates slug field from title
     prepopulated_fields = {'slug': ('title',)}
 
+    # List title and page that section belongs to
+    list_display = ('title', 'page')
+
 
 class SectionThreeColumnAdmin(admin.ModelAdmin):
     """
@@ -47,6 +54,32 @@ class SectionThreeColumnAdmin(admin.ModelAdmin):
     # Prepopulates slug field from title
     prepopulated_fields = {'slug': ('title',)}
 
+    # List title and page that section belongs to
+    list_display = ('title', 'page')
+
+
+class SectionVideoGroup(admin.ModelAdmin):
+    """
+    Manages admin for video group section
+    """
+    # Prepopulates slug field from title
+    prepopulated_fields = {'slug': ('title',)}
+
+    # List title and page that section belongs to
+    list_display = ('title', 'page')
+
+
+class SectionVideo(admin.ModelAdmin):
+    """
+    Manages admin for video section
+    """
+
+    # Prepopulates slug field from title
+    prepopulated_fields = {'slug': ('title',)}
+
+    # List title and page that section belongs to
+    list_display = ('title', 'page')
+
 
 admin.site.register(Page, PagesAdmin)
 admin.site.register(NavigationMenu, NavigationMenusAdmin)
@@ -54,3 +87,5 @@ admin.site.register(NavigationItem, NavigationItemsAdmin)
 admin.site.register(SectionDefault, SectionDefaultAdmin)
 admin.site.register(SectionTwoColumn, SectionTwoColumnAdmin)
 admin.site.register(SectionThreeColumn, SectionThreeColumnAdmin)
+admin.site.register(SectionVideoGroup, SectionVideoGroupAdmin)
+admin.site.register(SectionVideo, SectionVideoAdmin)

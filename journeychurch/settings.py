@@ -34,6 +34,7 @@ ALLOWED_HOSTS = allowed_hosts
 
 INSTALLED_APPS = [
     'tinymce',
+    'video.apps.VideoConfig',
     'pages.apps.PagesConfig',
     'social.apps.SocialConfig',
     'django.contrib.admin',
