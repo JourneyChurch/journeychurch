@@ -1,6 +1,8 @@
 {% load sections.default %}
 {% load sections.two_column %}
 {% load sections.three_column %}
+{% load sections.video_group %}
+{% load sections.video %}
 
 {% for section in sections %}
   {% if section.type == "default" %}
@@ -9,5 +11,9 @@
     {% two_column section=section.object %}
   {% elif section.type == "threecolumn" %}
     {% three_column section=section.object %}
+  {% elif section.type == "videogroup" %}
+    {% video_group section=section.object %}
+  {% elif section.type == "video" %}
+    {% video section=section.object %}
   {% endif %}
 {% endfor %}

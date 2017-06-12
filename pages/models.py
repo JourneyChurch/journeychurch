@@ -131,6 +131,10 @@ class Content(models.Model):
             return "twocolumn"
         elif hasattr(self, "sectionthreecolumn"):
             return "threecolumn"
+        elif hasattr(self, "sectionvideogroup"):
+            return "videogroup"
+        elif hasattr(self, "sectionvideo"):
+            return "video"
         return None
 
     # Representation in admin

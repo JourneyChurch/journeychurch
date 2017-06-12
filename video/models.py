@@ -44,8 +44,11 @@ class Video(models.Model):
     # Youtube ID for video
     youtube_id = models.CharField(max_length=11)
 
+    # Date
+    date = models.DateTimeField(null=True)
+
     # Video Groups
-    video_groups = models.ManyToManyField(VideoGroup)
+    video_groups = models.ManyToManyField(VideoGroup, blank=True)
 
     # Representation in admin
     def __str__(self):

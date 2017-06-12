@@ -58,7 +58,7 @@ class SectionThreeColumnAdmin(admin.ModelAdmin):
     list_display = ('title', 'page')
 
 
-class SectionVideoGroup(admin.ModelAdmin):
+class SectionVideoGroupAdmin(admin.ModelAdmin):
     """
     Manages admin for video group section
     """
@@ -69,7 +69,7 @@ class SectionVideoGroup(admin.ModelAdmin):
     list_display = ('title', 'page')
 
 
-class SectionVideo(admin.ModelAdmin):
+class SectionVideoAdmin(admin.ModelAdmin):
     """
     Manages admin for video section
     """

@@ -1,7 +1,7 @@
 <section id="section-{{ slug }}" {% if center_text %}class="text-center"{% endif %} {% if background_color or background_image %}style="{% if background_color %}background-color: #{{ background_color }};{% endif %}{% if background_image %}background-image: url('{{ background_image.url }}');{% endif %}"{% endif %}>
   <div class="container">
     <div class="row">
-      {% if display_title %}<div class="col-xs-12">{{ display_title }}</div>{% endif %}
+      {% if title %}<div class="col-xs-12">{{ title }}</div>{% endif %}
 
       <div class="col-sm-6">
         {% if image_left %}<img src="{{ image_left.url }}" class="img-responsive">{% endif %}
