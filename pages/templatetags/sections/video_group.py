@@ -5,17 +5,20 @@ from pages.models import Content
 register = template.Library()
 
 # Default Section:
-# Custom Tag that can be accessed by {{ default }}. Creates fields for a default type section
-@register.inclusion_tag("pages/sections/default.html")
+# Custom Tag that can be accessed by {{ video_group }}. Creates fields for a default type section
+@register.inclusion_tag("pages/sections/video.html")
 def video_group(section):
+
+    first_video = section.video_group.video_set.order_by('-date').first()
 
     context = {
         "title": section.display_title,
         "slug": section.slug,
         "background_image": section.background_image,
         "background_color": section.background_color,
-        "content": section.content,
-        "image": section.image
+        "video_title": first_video.display_title,
+        "video_description": first_video.description,
+        "youtube_id": first_video.youtube_id
     }
 
     return context

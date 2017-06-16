@@ -124,6 +124,7 @@ class Content(models.Model):
     order = models.CharField(max_length=100, null=True)
 
     # Determine the section type
+    # The attributes are lowercase names of the class names below
     def section_type(self):
         if hasattr(self, "sectiondefault"):
             return "default"
@@ -263,7 +264,7 @@ class SectionVideoGroup(Content):
         Plural name used in admin
         """
 
-        verbose_name_plural = "Sections - Video Group"
+        verbose_name_plural = "Sections - Video Group Template"
 
 
 class SectionVideo(Content):
@@ -282,4 +283,4 @@ class SectionVideo(Content):
         Plural name used in admin
         """
 
-        verbose_name_plural = "Sections - Video"
+        verbose_name_plural = "Sections - Single Video Template"

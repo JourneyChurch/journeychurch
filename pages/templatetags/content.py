@@ -30,7 +30,7 @@ def content(sections):
         elif section.section_type() == "videogroup":
             sections_out.append({
                 "object": section.sectionvideogroup,
-                "type": "vidoegroup"
+                "type": "videogroup"
             })
         elif section.section_type() == "video":
             sections_out.append({
