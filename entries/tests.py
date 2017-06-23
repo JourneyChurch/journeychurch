@@ -7,42 +7,71 @@ class EntryTestCase(TestCase):
     Tests for Entry Model
     """
 
-    # Test is_published.
+    # Test is_published with NavigationMenu
     def test_is_published(self):
 
         # Test date
         date = datetime(year=2017, month=6, day=22, hour=9, minute=23, second=0, microsecond=0)
 
 
-        # True test case with navigation menu, entry_date == date
+        # True, dates are not specified
+        menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=None, expiration_date=None)
+        self.assertEqual(menu.is_published(date=date), True)
+
+
+        # Entry Date not specified
+        # True, date <= expiration date
+        expiration_date = datetime(year=2017, month=7, day=22, hour=9, minute=23, second=0, microsecond=0)
+        menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=None, expiration_date=expiration_date)
+        self.assertEqual(menu.is_published(date=date), True)
+
+        # False, date > expiration date
+        expiration_date = datetime(year=2017, month=5, day=22, hour=9, minute=23, second=0, microsecond=0)
+        menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=None, expiration_date=expiration_date)
+        self.assertEqual(menu.is_published(date=date), False)
+
+
+        # Expiration Date not specified
+        # True, date >= entry date
+        entry_date = datetime(year=2017, month=5, day=22, hour=9, minute=23, second=0, microsecond=0)
+        menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=entry_date, expiration_date=None)
+        self.assertEqual(menu.is_published(date=date), True)
+
+        # False, date < entry date
+        entry_date = datetime(year=2017, month=7, day=22, hour=9, minute=23, second=0, microsecond=0)
+        menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=entry_date, expiration_date=None)
+        self.assertEqual(menu.is_published(date=date), False)
+
+
+        # True, entry_date == date
         entry_date = datetime(year=2017, month=6, day=22, hour=9, minute=23, second=0, microsecond=0)
         expiration_date = datetime(year=2017, month=7, day=22, hour=9, minute=23, second=0, microsecond=0)
         menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=entry_date, expiration_date=expiration_date)
         self.assertEqual(menu.is_published(date=date), True)
 
 
-        # True test case with navigation menu, expiration_date == date
+        # True, expiration_date == date
         entry_date = datetime(year=2017, month=5, day=22, hour=9, minute=23, second=0, microsecond=0)
         expiration_date = datetime(year=2017, month=6, day=22, hour=9, minute=23, second=0, microsecond=0)
         menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=entry_date, expiration_date=expiration_date)
         self.assertEqual(menu.is_published(date=date), True)
 
 
-        # True test case with navigation menu, entry_date < date < expiration_date
+        # True, entry_date < date < expiration_date
         entry_date = datetime(year=2017, month=6, day=21, hour=9, minute=23, second=0, microsecond=0)
         expiration_date = datetime(year=2017, month=6, day=24, hour=9, minute=23, second=0, microsecond=0)
         menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=entry_date, expiration_date=expiration_date)
         self.assertEqual(menu.is_published(date=date), True)
 
 
-        # False test case with navigation menu date > expiration_date
+        # False, date > expiration_date
         entry_date = datetime(year=2017, month=6, day=20, hour=9, minute=23, second=0, microsecond=0)
         expiration_date = datetime(year=2017, month=6, day=21, hour=9, minute=23, second=0, microsecond=0)
         menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=entry_date, expiration_date=expiration_date)
         self.assertEqual(menu.is_published(date=date), False)
 
 
-        # False test case with navigation menu date < entry_date
+        # False, date < entry_date
         entry_date = datetime(year=2017, month=7, day=20, hour=9, minute=23, second=0, microsecond=0)
         expiration_date = datetime(year=2017, month=7, day=21, hour=9, minute=23, second=0, microsecond=0)
         menu = NavigationMenu(title="Menu", slug="menu", created_date=datetime.now(), updated_date=datetime.now(), entry_date=entry_date, expiration_date=expiration_date)

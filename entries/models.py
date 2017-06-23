@@ -40,9 +40,22 @@ class Entry(models.Model):
 
     # Check if the entry is published based on the entry date and expiration date
     def is_published(self, date):
-        if date >= self.entry_date and date <= self.expiration_date:
+
+        # Both are empty
+        if self.entry_date is None and self.expiration_date is None:
             return True
-        return False
+
+        # Entry Date is empty
+        elif self.entry_date is None:
+            return date <= self.expiration_date
+
+        # Expiration Date is empty
+        elif self.expiration_date is None:
+            return date >= self.entry_date
+
+        # Both are specified
+        else:
+            return date >= self.entry_date and date <= self.expiration_date
 
     # Check if entry is visible to users
     def is_public(self, date):
