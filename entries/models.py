@@ -26,15 +26,27 @@ class Entry(models.Model):
     # Entry Date (used for scheduling)
     expiration_date = models.DateTimeField(blank=True, null=True)
 
+    # Status of entry - open or closed
+    STATUSES = (
+        ('open', 'Open'),
+        ('closed', 'Closed'),
+    )
+
+    status = models.CharField(max_length=6, choices=STATUSES, default='open')
+
     # Representation in admin
     def __str__(self):
         return self.title
 
     # Check if the entry is published based on the entry date and expiration date
-    def is_published(self):
-        now = datetime.now()
+    def is_published(self, date):
+        if date >= self.entry_date and date <= self.expiration_date:
+            return True
+        return False
 
-        if now >= self.entry_date and now <= self.expiration_date:
+    # Check if entry is visible to users
+    def is_public(self, date):
+        if self.status is 'open' and self.is_published(date=date):
             return True
         return False
 
