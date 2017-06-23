@@ -24,6 +24,9 @@ class NavigationItem(Entry):
     Navigation item that belongs to a menu.
     """
 
+    # Displayed title of navigation item
+    display_title = models.CharField(max_length=100, null=True)
+
     # Url to link to
     url = models.CharField(max_length=2000)
 
