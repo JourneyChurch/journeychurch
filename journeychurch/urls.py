@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^team/', include('team.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('pages.urls')),
 ]

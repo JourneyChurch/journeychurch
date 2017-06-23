@@ -1,4 +1,5 @@
 from django.db import models
+from entries.models import Entry
 from social.models import Social
 from video.models import VideoGroup, Video
 
@@ -7,31 +8,21 @@ from video.models import VideoGroup, Video
 from tinymce.models import HTMLField
 
 
-class NavigationMenu(models.Model):
+class NavigationMenu(Entry):
     """
     Menu that has navigation items.
     This menu is associated with a page or part of application.
     """
-
-    # Title of navigation menu, must be unique (not displayed, just for organization)
-    title = models.CharField(max_length=100, unique=True)
-
-    # Representation in admin
-    def __str__(self):
-        return self.title
 
     class Meta:
         # Plural name used in admin
         verbose_name_plural = "Navigation - Menus"
 
 
-class NavigationItem(models.Model):
+class NavigationItem(Entry):
     """
     Navigation item that belongs to a menu.
     """
-
-    # Title of navigation item
-    title = models.CharField(max_length=100)
 
     # Url to link to
     url = models.CharField(max_length=2000)
@@ -45,16 +36,12 @@ class NavigationItem(models.Model):
     # Foreign key to relate a navigation item to a menu
     menu = models.ForeignKey(NavigationMenu, on_delete=models.CASCADE)
 
-    # Representation in admin
-    def __str__(self):
-        return self.title
-
     class Meta:
         # Plural name used in admin
         verbose_name_plural = "Navigation - Items"
 
 
-class Page(models.Model):
+class Page(Entry):
     """
     A single page without content
     where an image, title, and navigation can be found.
@@ -62,14 +49,8 @@ class Page(models.Model):
     The content is derived from different Sections that belong to the page.
     """
 
-    # Title of page, must be unique (not displayed, just for organization)
-    title = models.CharField(max_length=100, unique=True)
-
     # Title display on page
     display_title = models.CharField(max_length=100)
-
-    # Slug based off of title
-    slug = models.SlugField(max_length=200, unique=True, null=True)
 
     # Sub title under display title
     subtitle = models.CharField(max_length=100, blank=True, null=True)
@@ -80,7 +61,7 @@ class Page(models.Model):
     # Button link text
     link_text = models.CharField(max_length=100, blank=True, null=True)
 
-    # Background image (uploads to /media/uploads/backgrounds/)
+    # Background image (uploads to /uploads/backgrounds/)
     background_image = models.ImageField(upload_to="backgrounds/", max_length=200)
 
     # Associated navigation menu with page
@@ -89,12 +70,8 @@ class Page(models.Model):
     # Social media links
     social = models.ForeignKey(Social, on_delete=models.CASCADE, null=True, blank=True)
 
-    # Representation in admin
-    def __str__(self):
-        return self.title
 
-
-class Content(models.Model):
+class Content(Entry):
     """
     Base Class for all content.
     This allows a page to have different types of sections.
@@ -102,19 +79,13 @@ class Content(models.Model):
     different kinds of sections using multi table inheritance
     """
 
-    # Title of content
-    title = models.CharField(max_length=100, unique=True, null=True)
-
     # Display Title
     display_title = models.CharField(max_length=100, blank=True, null=True)
-
-    # Slug for section - used in html id
-    slug = models.SlugField(max_length=200, unique=True, null=True)
 
     # Page that content belongs to
     page = models.ForeignKey(Page, on_delete=models.CASCADE, null=True)
 
-    # Background image (uploads to /media/uploads/backgrounds/)
+    # Background image (uploads to /uploads/backgrounds/)
     background_image = models.ImageField(upload_to="backgrounds/", max_length=200, blank=True, null=True)
 
     # Background color in hex
@@ -137,10 +108,6 @@ class Content(models.Model):
         elif hasattr(self, "sectionvideo"):
             return "video"
         return None
-
-    # Representation in admin
-    def __str__(self):
-        return self.title
 
 
 class SectionDefault(Content):

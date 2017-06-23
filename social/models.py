@@ -1,13 +1,10 @@
 from django.db import models
+from entries.models import Entry
 
-
-class Social(models.Model):
+class Social(Entry):
     """
     Social links that go with another resource
     """
-
-    # Title of social media
-    title = models.CharField(max_length=100, unique=True)
 
     # Facebook
     facebook = models.CharField(max_length=2000, blank=True, null=True)
@@ -23,6 +20,3 @@ class Social(models.Model):
 
     # Snapchat
     snapchat = models.CharField(max_length=2000, blank=True, null=True)
-
-    def __str__(self):
-        return self.title

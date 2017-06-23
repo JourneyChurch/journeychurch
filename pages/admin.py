@@ -1,88 +1,133 @@
 from django.contrib import admin
+from entries.admin import EntryAdmin
 from pages.models import Page, NavigationMenu, NavigationItem, SectionDefault, SectionTwoColumn, SectionThreeColumn, SectionVideoGroup, SectionVideo
 
 
-class PagesAdmin(admin.ModelAdmin):
+class PagesAdmin(EntryAdmin):
     """
     Manages admin for pages
     """
-    # Prepopulates slug field from title
-    prepopulated_fields = {'slug': ('title',)}
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Page Fields', {
+            'fields': ('display_title', 'subtitle', 'link_url', 'link_text', 'background_image', 'menu', 'social')
+        },)
+    )
 
 
-class NavigationMenusAdmin(admin.ModelAdmin):
-    """
-    Manages admin for navigation menus
-    """
-    pass
-
-
-class NavigationItemsAdmin(admin.ModelAdmin):
+class NavigationItemsAdmin(EntryAdmin):
     """
     Manages admin for navigation items
     """
+
     # List title and menu that item belongs to
     list_display = ('title', 'menu')
 
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Navigation Item Fields', {
+            'fields': ('url', 'new_tab', 'order', 'menu')
+        },)
+    )
 
-class SectionDefaultAdmin(admin.ModelAdmin):
+
+class ContentAdmin(EntryAdmin):
     """
-    Manages admin for default sections
+    Manages admin for all content
     """
-    # Prepopulates slug field from title
-    prepopulated_fields = {'slug': ('title',)}
 
     # List title and page that section belongs to
     list_display = ('title', 'page')
 
 
-class SectionTwoColumnAdmin(admin.ModelAdmin):
+class SectionDefaultAdmin(ContentAdmin):
     """
-    Manages admin for two column sections
-    """
-    # Prepopulates slug field from title
-    prepopulated_fields = {'slug': ('title',)}
-
-    # List title and page that section belongs to
-    list_display = ('title', 'page')
-
-
-class SectionThreeColumnAdmin(admin.ModelAdmin):
-    """
-    Manages admin for three column sections
-    """
-    # Prepopulates slug field from title
-    prepopulated_fields = {'slug': ('title',)}
-
-    # List title and page that section belongs to
-    list_display = ('title', 'page')
-
-
-class SectionVideoGroupAdmin(admin.ModelAdmin):
-    """
-    Manages admin for video group section
-    """
-    # Prepopulates slug field from title
-    prepopulated_fields = {'slug': ('title',)}
-
-    # List title and page that section belongs to
-    list_display = ('title', 'page')
-
-
-class SectionVideoAdmin(admin.ModelAdmin):
-    """
-    Manages admin for video section
+    Manages admin for default section template
     """
 
-    # Prepopulates slug field from title
-    prepopulated_fields = {'slug': ('title',)}
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order', 'content', 'image')
+        },)
+    )
 
-    # List title and page that section belongs to
-    list_display = ('title', 'page')
+class SectionTwoColumnAdmin(ContentAdmin):
+    """
+    Manages admin for two column section template
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order', 'center_text')
+        },),
+        ('Column Left', {
+            'fields': ('title_left', 'content_left', 'image_left')
+        },),
+        ('Column Right', {
+            'fields': ('title_right', 'content_right', 'image_right')
+        },)
+    )
+
+class SectionThreeColumnAdmin(ContentAdmin):
+    """
+    Manages admin for three column section template
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order', 'center_text')
+        },),
+        ('Column Left', {
+            'fields': ('title_left', 'content_left', 'image_left')
+        },),
+        ('Column Center', {
+            'fields': ('title_center', 'content_center', 'image_center')
+        },),
+        ('Column Right', {
+            'fields': ('title_right', 'content_right', 'image_right')
+        },)
+    )
+
+
+class SectionVideoGroupAdmin(ContentAdmin):
+    """
+    Manages admin for video group section template
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('video_group',)
+        },)
+    )
+
+class SectionVideoAdmin(ContentAdmin):
+    """
+    Manages admin for video section template
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('video',)
+        },)
+    )
+
 
 
 admin.site.register(Page, PagesAdmin)
-admin.site.register(NavigationMenu, NavigationMenusAdmin)
+admin.site.register(NavigationMenu, EntryAdmin)
 admin.site.register(NavigationItem, NavigationItemsAdmin)
 admin.site.register(SectionDefault, SectionDefaultAdmin)
 admin.site.register(SectionTwoColumn, SectionTwoColumnAdmin)

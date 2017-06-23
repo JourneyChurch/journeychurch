@@ -34,6 +34,8 @@ ALLOWED_HOSTS = allowed_hosts
 
 INSTALLED_APPS = [
     'tinymce',
+    'entries.apps.EntriesConfig',
+    'team.apps.TeamConfig',
     'video.apps.VideoConfig',
     'pages.apps.PagesConfig',
     'social.apps.SocialConfig',
