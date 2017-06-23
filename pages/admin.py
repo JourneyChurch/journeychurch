@@ -29,7 +29,7 @@ class NavigationItemsAdmin(EntryAdmin):
     fieldsets = (
         EntryAdmin.fieldset,
         ('Navigation Item Fields', {
-            'fields': ('url', 'new_tab', 'order', 'menu')
+            'fields': ('display_title', 'url', 'new_tab', 'order', 'menu')
         },)
     )
 

@@ -20,10 +20,10 @@ class Entry(models.Model):
     updated_date = models.DateTimeField(auto_now=True, null=True)
 
     # Entry Date (used for scheduling)
-    entry_date = models.DateTimeField(null=True)
+    entry_date = models.DateTimeField(blank=True, null=True)
 
     # Entry Date (used for scheduling)
-    expiration_date = models.DateTimeField(null=True)
+    expiration_date = models.DateTimeField(blank=True, null=True)
 
     # Representation in admin
     def __str__(self):
