@@ -12,7 +12,7 @@ class VideoGroup(Entry):
     """
 
     # Display title of video group
-    display_title = models.CharField(max_length=100)
+    display_title = models.CharField(max_length=100, null=True)
 
 
 class Video(Entry):
@@ -21,13 +21,13 @@ class Video(Entry):
     """
 
     # Displayed title of video
-    display_title = models.CharField(max_length=100)
+    display_title = models.CharField(max_length=100, null=True)
 
     # Description of video
     description = HTMLField(max_length=60000, blank=True, null=True)
 
     # Youtube ID for video
-    youtube_id = models.CharField(max_length=11)
+    youtube_id = models.CharField(max_length=11, null=True)
 
     # Date
     date = models.DateTimeField(null=True)
