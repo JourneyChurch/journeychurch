@@ -50,7 +50,7 @@ class Page(Entry):
     """
 
     # Title display on page
-    display_title = models.CharField(max_length=100)
+    display_title = models.CharField(max_length=100, null=True)
 
     # Sub title under display title
     subtitle = models.CharField(max_length=100, blank=True, null=True)
