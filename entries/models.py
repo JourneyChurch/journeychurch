@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class Entry(models.Model):
     """
@@ -28,6 +29,14 @@ class Entry(models.Model):
     # Representation in admin
     def __str__(self):
         return self.title
+
+    # Check if the entry is published based on the entry date and expiration date
+    def is_published(self):
+        now = datetime.now()
+
+        if now >= self.entry_date and now <= self.expiration_date:
+            return True
+        return False
 
 
     class Meta:
