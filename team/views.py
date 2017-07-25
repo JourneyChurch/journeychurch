@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from team.models import TeamMember, Team
 
 def index(request):
-    return HttpResponse("Hello")
+    page = get_object_or_404(TeamMember)
+
+def team_member(request, slug):
+    return HttpResponse("<h1>" + slug + "</h1>")

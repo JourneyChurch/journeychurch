@@ -9,7 +9,7 @@ register = template.Library()
 @register.inclusion_tag("pages/sections/video.html")
 def video_group(section):
 
-    first_video = section.video_group.video_set.order_by('-date').first()
+    first_video = section.video_group.video_set.order_by('-entry_date').first()
 
     context = {
         "title": section.display_title,

@@ -29,8 +29,5 @@ class Video(Entry):
     # Youtube ID for video
     youtube_id = models.CharField(max_length=11, null=True)
 
-    # Date
-    date = models.DateTimeField(null=True)
-
     # Video Groups
     video_groups = models.ManyToManyField(VideoGroup, blank=True)

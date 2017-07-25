@@ -1,10 +1,31 @@
 from django.db import models
-from datetime import datetime
+from django.db.models import Q
+from django.utils import timezone
+
+class PublicEntryManager(models.Manager):
+    """
+    Manager class that overrides the objects field on class Entry.
+    This returns the public entries instead of all entries.
+    """
+
+    def get_queryset(self):
+        return super(PublicEntryManager, self).get_queryset().filter(
+            # public entries: entry date <= now, expiration date > now, status is open
+            Q(expiration_date__gt=timezone.now()) | Q(expiration_date__isnull=True),
+            entry_date__lte=timezone.now(),
+            status='open',
+        )
 
 class Entry(models.Model):
     """
     Abstract class used to define fields for all entries
     """
+
+    # default set of objects
+    objects = models.Manager()
+
+    # uses PublicEntryManager to retrieve only public entries
+    public_objects = PublicEntryManager()
 
     # ID - automatically generated
 
@@ -21,7 +42,7 @@ class Entry(models.Model):
     updated_date = models.DateTimeField(auto_now=True, null=True)
 
     # Entry Date (used for scheduling)
-    entry_date = models.DateTimeField(blank=True, null=True)
+    entry_date = models.DateTimeField(null=True)
 
     # Entry Date (used for scheduling)
     expiration_date = models.DateTimeField(blank=True, null=True)

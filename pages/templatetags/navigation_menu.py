@@ -1,6 +1,7 @@
 from django import template
 from django.shortcuts import get_object_or_404
-from pages.models import NavigationMenu
+from pages.models import NavigationMenu, NavigationItem
+from django.core.exceptions import ObjectDoesNotExist
 
 register = template.Library()
 
@@ -10,11 +11,17 @@ register = template.Library()
 def navigation_menu(title='Main', inline=True):
 
     # get navigation menu
-    menu = get_object_or_404(NavigationMenu, title=title)
+    try:
+        menu = NavigationMenu.public_objects.get(title=title)
+    except ObjectDoesNotExist:
+        menu = None
 
     # get all of its navigation items
     if menu:
-        navigation_items = menu.navigationitem_set.all().order_by('order')
+        try:
+            navigation_items = NavigationItem.public_objects.filter(menu_id=menu.id).order_by('order')
+        except ObjectDoesNotExist:
+            navigation_items = None
     else:
         navigation_items = None
 

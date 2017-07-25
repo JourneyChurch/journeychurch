@@ -2,4 +2,17 @@ from django.contrib import admin
 from entries.admin import EntryAdmin
 from social.models import Social
 
-admin.site.register(Social, EntryAdmin)
+class SocialAdmin(EntryAdmin):
+    """
+    Manages admin for social entries
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Social Fields', {
+            'fields': ('facebook', 'twitter', 'instagram', 'youtube', 'snapchat',)
+        },)
+    )
+
+admin.site.register(Social, SocialAdmin)

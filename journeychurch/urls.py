@@ -15,6 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from journeychurch import views
+
+#handler404 = views.handler404
+#handler500 = views.handler500
 
 urlpatterns = [
     url(r'^tinymce/', include('tinymce.urls')),

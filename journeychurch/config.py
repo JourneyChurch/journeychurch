@@ -11,7 +11,7 @@ with open(os.path.join(BASE_DIR, '../config/journeychurch/SECRET_KEY')) as file:
 
 # DEBUG
 with open(os.path.join(BASE_DIR, '../config/journeychurch/DEBUG')) as file:
-    debug = file.read().strip()
+    debug = (file.read().strip() == 'True')
 
 
 # ALLOWED_HOSTS
