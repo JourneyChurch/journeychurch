@@ -15,9 +15,19 @@ def index(request, slug=None):
 
     # Get public navigation menu
     try:
-        navigation_menu = NavigationMenu.public_objects.get(pk=page.menu.id)
+        if page.menu is None:
+            navigation_menu = None
+        else:
+            navigation_menu = NavigationMenu.public_objects.get(pk=page.menu.id)
     except ObjectDoesNotExist:
         navigation_menu = None
+
+    # Get public content
+    try:
+        ids = page.content_set.only("id")
+        content = Content.public_objects.filter(id__in=ids)
+    except ObjectDoesNotExist:
+        content = None
 
     context = {
         'title': page.display_title,
