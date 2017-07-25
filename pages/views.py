@@ -23,12 +23,10 @@ def index(request, slug=None):
         navigation_menu = None
 
     # Get public content
-    try:
-        ids = page.content_set.only("id")
-        content = Content.public_objects.filter(id__in=ids)
-    except ObjectDoesNotExist:
-        content = None
+    ids = page.content_set.only("id")
+    content = Content.public_objects.filter(id__in=ids)
 
+    # Context for view
     context = {
         'title': page.display_title,
         'subtitle': page.subtitle,
@@ -36,7 +34,7 @@ def index(request, slug=None):
         'link_text': page.link_text,
         'background_image': page.background_image.url,
         'navigation_menu': navigation_menu,
-        'content': page.content_set.all()
+        'content': content
     }
 
     return render(request, 'pages/index.html', context)
