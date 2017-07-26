@@ -1,14 +1,14 @@
 <!-- Main template for basic pages -->
 {% extends "pages/base.html" %}
 
-{% load page_header %}
+{% load page_header_team %}
 
 {% block title %}
   {{ page.title }}
 {% endblock %}
 
 {% block content %}
-  {% page_header page=page %}
+  {% page_header_team page=page teams=teams %}
 
   <div class="container">
     <div class="row">

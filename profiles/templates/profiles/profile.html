@@ -1,22 +1,25 @@
 <!-- Main template for basic pages -->
 {% extends "pages/base.html" %}
-{% load navigation_menu %}
+
+{% load page_header_team %}
 {% load social %}
-{% load content %}
 
 {% block title %}
   {{ page.title }}
 {% endblock %}
 
 {% block content %}
-  {% page_header page=page}
+  {% page_header_team page=page teams=teams %}
 
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
+        <img src="{{ profile.image.url }}" class="img-responsive" />
         <h1>{{ profile.title }}</h1>
         <h3>{{ profile.job_title }}</h3>
-        <p>{{ profile.bio }}</p>
+        <p>{{ profile.bio|safe }}</p>
+        <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+        {% social title=profile.social.title %}
       </div>
     </div>
   </div>
