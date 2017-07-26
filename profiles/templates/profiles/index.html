@@ -1,0 +1,25 @@
+<!-- Main template for basic pages -->
+{% extends "pages/base.html" %}
+
+{% load page_header %}
+
+{% block title %}
+  {{ page.title }}
+{% endblock %}
+
+{% block content %}
+  {% page_header page=page %}
+
+  <div class="container">
+    <div class="row">
+      {% for profile in profiles %}
+        <div class="col-sm-6 col-md-4">
+          <img src="{{ profile.image.url }}" class="img-responsive" />
+          <h4>{{ profile.title }}</h4>
+          <h5>{{ profile.job_title }}</h5>
+          <a href="/profiles/{{ profile.slug }}">More ></a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -16,13 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from journeychurch import views
-
-#handler404 = views.handler404
-#handler500 = views.handler500
+import profiles.views
 
 urlpatterns = [
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^team/', include('team.urls')),
+    url(r'^profiles/(?P<slug>[-\w]+)/$', profiles.views.get_profile),
+    url(r'^team/$', profiles.views.get_all_profiles),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('pages.urls')),
 ]

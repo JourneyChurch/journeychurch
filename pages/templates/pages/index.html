@@ -1,37 +1,14 @@
 <!-- Main template for basic pages -->
 {% extends "pages/base.html" %}
-{% load navigation_menu %}
-{% load social %}
+{% load page_header %}
 {% load content %}
 
 {% block title %}
-  {{ title }}
+  {{ page.title }}
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1>{{ title }}</h1>
-
-        {% if subtitle %}
-          <h3>{{ subtitle }}</h3>
-        {% endif %}
-
-        {% if link_url and link_text %}<a href="{{ link_url }}">{{ link_text }}</a>{% endif %}
-
-        {% if navigation_menu %}
-          {% navigation_menu title=navigation_menu.title inline=True %}
-        {% endif %}
-
-        {% if social %}
-          {% social title="Main" %}
-        {% endif %}
-
-        {% if background_image %}<img src="{{ background_image }}" class="img-responsive">{% endif %}
-      </div>
-    </div>
-  </div>
+  {% page_header page=page %}
 
   {% if content %}
     {% content sections=content %}
