@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from pages.models import Page, Content, NavigationMenu
+from pages.models import Page, NavigationMenu
 from django.core.exceptions import ObjectDoesNotExist
 
 
@@ -14,32 +14,14 @@ def index(request, slug=None):
     else:
         page = get_object_or_404(Page.public_objects, slug=slug)
 
-    # Get public navigation menu
-    # Just hide navigation if not public
-    try:
-        if page.menu is None:
-            navigation_menu = None
-        else:
-            navigation_menu = NavigationMenu.public_objects.get(pk=page.menu.id)
-    except ObjectDoesNotExist:
-        navigation_menu = None
 
-    # Get public content
-    # Just hide content if not public
-    ids = page.content_set.only("id")
-    content = Content.public_objects.filter(id__in=ids)
+    # Navigation, Social, and Sections are checked if they are public within their corresponding inclusion tags
+
 
     # Context for view
     context = {
-        'page': {
-            'title': page.display_title,
-            'subtitle': page.subtitle,
-            'link_url': page.link_url,
-            'link_text': page.link_text,
-            'background_image': page.background_image.url,
-            'navigation_menu': navigation_menu,
-        },
-        'content': content
+        'page': page,
+        'content': page.content_set.all(),
     }
 
     return render(request, 'pages/index.html', context)

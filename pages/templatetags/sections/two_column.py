@@ -5,7 +5,7 @@ from pages.models import Content
 register = template.Library()
 
 # Two Column Section:
-# Custom Tag that can be accessed by {{ two_column }}. Creates fields for a two column type section
+# Custom Tag that can be accessed by {% two_column %}. Creates fields for a two column type section
 @register.inclusion_tag("pages/sections/two_column.html")
 def two_column(section):
 

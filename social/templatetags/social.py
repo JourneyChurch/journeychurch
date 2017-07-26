@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 register = template.Library()
 
 # Social Media:
-# Custom Tag that can be accessed by {{ social }}. Sends Social to social.html for embedding social media links in page.
+# Custom Tag that can be accessed by {% social %}. Sends Social to social.html for embedding social media links in page.
 @register.inclusion_tag("social/social.html")
 def social(title="Main"):
 

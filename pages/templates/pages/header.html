@@ -13,15 +13,15 @@
 
       {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
 
-      {% if page.navigation_menu %}
-        {% navigation_menu title=page.navigation_menu.title inline=True %}
+      {% if page.menu %}
+        {% navigation_menu title=page.menu.title inline=True %}
       {% endif %}
 
       {% if page.social %}
-        {% social title="Main" %}
+        {% social title=page.social.title %}
       {% endif %}
 
-      {% if page.background_image %}<img src="{{ page.background_image }}" class="img-responsive">{% endif %}
+      {% if page.background_image %}<img src="{{ page.background_image.url }}" class="img-responsive">{% endif %}
     </div>
   </div>
 </div>

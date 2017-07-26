@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 register = template.Library()
 
 # Navigation menu:
-# Custom Tag that can be accessed by {{ navigation }}. Sends NavigationMenu items to navigation.html.
+# Custom Tag that can be accessed by {% navigation %}. Sends NavigationMenu items to navigation.html.
 @register.inclusion_tag("pages/navigation_menu.html")
 def navigation_menu(title='Main', inline=True):
 

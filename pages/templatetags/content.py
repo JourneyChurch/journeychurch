@@ -1,14 +1,17 @@
 from django import template
 from django.shortcuts import get_object_or_404
-from pages.models import NavigationMenu
+from pages.models import Content
 
 register = template.Library()
 
 # Content:
-# Custom Tag that can be accessed by {{ content }}. Extracts sections from content and gives it to content template
+# Custom Tag that can be accessed by {% content %}. Extracts sections from content and gives it to content template
 @register.inclusion_tag("pages/content.html")
 def content(sections):
     sections_out = []
+
+    ids = sections.only('id')
+    sections = Content.public_objects.filter(id__in=ids)
 
     # Loop through each section and find the section type
     for section in sections:

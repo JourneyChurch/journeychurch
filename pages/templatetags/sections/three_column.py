@@ -5,7 +5,7 @@ from pages.models import Content
 register = template.Library()
 
 # Three Column Section:
-# Custom Tag that can be accessed by {{ three_column }}. Creates fields for a three column type section
+# Custom Tag that can be accessed by {% three_column %}. Creates fields for a three column type section
 @register.inclusion_tag("pages/sections/three_column.html")
 def three_column(section):
 

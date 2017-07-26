@@ -5,7 +5,7 @@ from pages.models import Content
 register = template.Library()
 
 # Default Section:
-# Custom Tag that can be accessed by {{ video_group }}. Creates fields for a default type section
+# Custom Tag that can be accessed by {% video_group %}. Creates fields for a default type section
 @register.inclusion_tag("pages/sections/video.html")
 def video_group(section):
 
