@@ -14,11 +14,15 @@ def index(request, slug=None):
     else:
         page = get_object_or_404(Page, slug=slug)
 
+    # Get current slug for active navigation links
+    current_slug = request.path[0:-1]
+
 
     # Context for view
     context = {
         'page': page,
         'content': page.content_set.all(),
+        'current_slug': current_slug
     }
 
     return render(request, 'pages/index.html', context)

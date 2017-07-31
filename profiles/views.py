@@ -16,14 +16,14 @@ def get_all_profiles(request):
     # Get teams for dynamic navigation bar
     teams = Team.objects.only('title', 'slug')
 
-    # Get current url for active links
-    current_url = resolve(request.path_info).url_name
+    # Get current slug for active navigation links
+    current_slug = request.path.split("/")[-2]
 
     context = {
         'page': page,
         'profiles': profiles,
         'teams': teams,
-        'current_url': request.path
+        'current_slug': current_slug
     }
 
     return render(request, 'profiles/index.html', context)
@@ -43,7 +43,8 @@ def get_profile(request, slug):
     context = {
         'page': page,
         'profile': profile,
-        'teams': teams
+        'teams': teams,
+        'current_slug': None
     }
 
     return render(request, 'profiles/profile.html', context)
@@ -63,14 +64,14 @@ def get_profiles_by_team(request, slug):
     # Get teams for dynamic navigation bar
     teams = Team.objects.only('title', 'slug')
 
-    # Get current url for active links
-    current_url = resolve(request.path_info).url_name
+    # Get current slug for active navigation links
+    current_slug = request.path.split("/")[-2]
 
     context = {
         'page': page,
         'profiles': profiles,
         'teams': teams,
-        'current_url': current_url
+        'current_slug': current_slug
     }
 
     return render(request, 'profiles/index.html', context)

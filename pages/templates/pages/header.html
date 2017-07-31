@@ -14,7 +14,7 @@
       {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
 
       {% if page.menu %}
-        {% navigation_menu title=page.menu.title inline=True %}
+        {% navigation_menu title=page.menu.title current_slug=current_slug inline=True %}
       {% endif %}
 
       {% if page.social %}

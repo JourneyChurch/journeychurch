@@ -8,7 +8,7 @@ register = template.Library()
 # Navigation menu:
 # Custom Tag that can be accessed by {% navigation %}. Sends NavigationMenu items to navigation.html.
 @register.inclusion_tag("pages/navigation_menu.html")
-def navigation_menu(title='Main', inline=True):
+def navigation_menu(current_slug, title='Main', inline=True):
 
     # get navigation menu
     try:
@@ -25,4 +25,4 @@ def navigation_menu(title='Main', inline=True):
     else:
         navigation_items = None
 
-    return {'navigation_items': navigation_items, 'inline': inline}
+    return {'navigation_items': navigation_items, 'current_slug':current_slug, 'inline': inline}

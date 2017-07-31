@@ -2,7 +2,13 @@
 {% if navigation_items %}
   <ul class="list-unstyled {% if inline is True %}list-inline{% endif %}">
   {% for item in navigation_items %}
-    <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %}>{{ item.display_title }}</a></li>
+    <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %} class="{% if current_slug == item.url %}active{% endif %}">{{ item.display_title }}</a></li>
   {% endfor %}
   </ul>
 {% endif %}
+
+<style>
+  .active {
+    color:orange;
+  }
+</style>

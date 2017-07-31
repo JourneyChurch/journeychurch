@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-  {% page_header page=page %}
+  {% page_header page=page current_slug=current_slug %}
 
   {% if content %}
     {% content sections=content %}
