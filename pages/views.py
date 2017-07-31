@@ -10,12 +10,9 @@ def index(request, slug=None):
     # Homepage has a slug of home. If there is no slug(/) then get the home page
     # Throw 404 if page not public
     if slug is None:
-        page = get_object_or_404(Page.public_objects, slug='home')
+        page = get_object_or_404(Page, slug='home')
     else:
-        page = get_object_or_404(Page.public_objects, slug=slug)
-
-
-    # Navigation, Social, and Sections are checked if they are public within their corresponding inclusion tags
+        page = get_object_or_404(Page, slug=slug)
 
 
     # Context for view

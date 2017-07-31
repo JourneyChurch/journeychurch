@@ -11,6 +11,8 @@
 
       {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
 
+      <h1>{{ current_url }}</h1>
+
       <ul class="list-unstyled list-inline">
       {% for team in teams %}
         <li><a href="/team/{{ team.slug }}">{{ team.title }}</a></li>

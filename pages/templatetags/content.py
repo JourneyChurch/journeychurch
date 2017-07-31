@@ -10,9 +10,6 @@ register = template.Library()
 def content(sections):
     sections_out = []
 
-    ids = sections.only('id')
-    sections = Content.public_objects.filter(id__in=ids)
-
     # Loop through each section and find the section type
     for section in sections:
         if section.section_type() == "default":

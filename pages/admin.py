@@ -16,6 +16,10 @@ class PagesAdmin(EntryAdmin):
         },)
     )
 
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return Page.all_objects.get_queryset()
+
 
 class NavigationItemsAdmin(EntryAdmin):
     """
@@ -32,6 +36,20 @@ class NavigationItemsAdmin(EntryAdmin):
             'fields': ('display_title', 'url', 'new_tab', 'order', 'menu')
         },)
     )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return NavigationItem.all_objects.get_queryset()
+
+
+class NavigationMenuAdmin(EntryAdmin):
+    """
+    Manages admin for navigation items
+    """
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return NavigationMenu.all_objects.get_queryset()
 
 
 class ContentAdmin(EntryAdmin):
@@ -56,6 +74,10 @@ class SectionDefaultAdmin(ContentAdmin):
         },)
     )
 
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionDefault.all_objects.get_queryset()
+
 class SectionTwoColumnAdmin(ContentAdmin):
     """
     Manages admin for two column section template
@@ -74,6 +96,10 @@ class SectionTwoColumnAdmin(ContentAdmin):
             'fields': ('title_right', 'content_right', 'image_right')
         },)
     )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionTwoColumn.all_objects.get_queryset()
 
 class SectionThreeColumnAdmin(ContentAdmin):
     """
@@ -97,6 +123,10 @@ class SectionThreeColumnAdmin(ContentAdmin):
         },)
     )
 
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionThreeColumn.all_objects.get_queryset()
+
 
 class SectionVideoGroupAdmin(ContentAdmin):
     """
@@ -111,6 +141,11 @@ class SectionVideoGroupAdmin(ContentAdmin):
         },)
     )
 
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionVideoGroup.all_objects.get_queryset()
+
+
 class SectionVideoAdmin(ContentAdmin):
     """
     Manages admin for video section template
@@ -124,10 +159,14 @@ class SectionVideoAdmin(ContentAdmin):
         },)
     )
 
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionVideo.all_objects.get_queryset()
+
 
 
 admin.site.register(Page, PagesAdmin)
-admin.site.register(NavigationMenu, EntryAdmin)
+admin.site.register(NavigationMenu, NavigationMenuAdmin)
 admin.site.register(NavigationItem, NavigationItemsAdmin)
 admin.site.register(SectionDefault, SectionDefaultAdmin)
 admin.site.register(SectionTwoColumn, SectionTwoColumnAdmin)

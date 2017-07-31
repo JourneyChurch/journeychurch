@@ -15,6 +15,11 @@ class ProfilesAdmin(EntryAdmin):
         },)
     )
 
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return Profile.all_objects.get_queryset()
+
+
 class TeamAdmin(EntryAdmin):
     """
     Manages admin for teams
@@ -24,6 +29,11 @@ class TeamAdmin(EntryAdmin):
     fieldsets = (
         EntryAdmin.fieldset,
     )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return Team.all_objects.get_queryset()
+
 
 admin.site.register(Profile, ProfilesAdmin)
 admin.site.register(Team, TeamAdmin)

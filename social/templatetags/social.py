@@ -12,7 +12,7 @@ def social(title="Main"):
 
     # Get public social
     try:
-        social = Social.public_objects.get(title=title)
+        social = Social.objects.get(title=title)
     except ObjectDoesNotExist:
         social = None
 

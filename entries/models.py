@@ -21,11 +21,11 @@ class Entry(models.Model):
     Abstract class used to define fields for all entries
     """
 
-    # default set of objects
-    objects = models.Manager()
+    # default uses PublicEntryManager to retrieve only public entries
+    objects = PublicEntryManager()
 
-    # uses PublicEntryManager to retrieve only public entries
-    public_objects = PublicEntryManager()
+    # All objects
+    all_objects = models.Manager()
 
     # ID - automatically generated
 

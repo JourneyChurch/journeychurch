@@ -15,4 +15,9 @@ class SocialAdmin(EntryAdmin):
         },)
     )
 
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return Social.all_objects.get_queryset()
+         
+
 admin.site.register(Social, SocialAdmin)
