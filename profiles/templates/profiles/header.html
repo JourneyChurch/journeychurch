@@ -11,10 +11,8 @@
 
       {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
 
-      <h1>{{ current_slug }}</h1>
-
       <ul class="list-unstyled list-inline">
-          <li><a href="/team/" class="{% if current_slug == 'team' %}active{% endif %}">Team</a></li>
+          <li><a href="/team/" class="{% if current_slug == 'team' %}active{% endif %}">All</a></li>
         {% for team in teams %}
           <li><a href="/team/{{ team.slug }}" class="{% if current_slug == team.slug %}active{% endif %}">{{ team.title }}</a></li>
         {% endfor %}

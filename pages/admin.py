@@ -1,6 +1,6 @@
 from django.contrib import admin
 from entries.admin import EntryAdmin
-from pages.models import Page, NavigationMenu, NavigationItem, SectionDefault, SectionTwoColumn, SectionThreeColumn, SectionVideoGroup, SectionVideo
+from pages.models import Page, NavigationMenu, NavigationItem, SectionDefault, SectionTwoColumn, SectionThreeColumn, SectionVideoGroup, SectionVideo, SectionTeam
 
 
 class PagesAdmin(EntryAdmin):
@@ -137,6 +137,9 @@ class SectionVideoGroupAdmin(ContentAdmin):
     fieldsets = (
         EntryAdmin.fieldset,
         ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order')
+        },),
+        ('Video Group Fields', {
             'fields': ('video_group',)
         },)
     )
@@ -155,6 +158,9 @@ class SectionVideoAdmin(ContentAdmin):
     fieldsets = (
         EntryAdmin.fieldset,
         ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order')
+        },),
+        ('Video Fields', {
             'fields': ('video',)
         },)
     )
@@ -162,6 +168,27 @@ class SectionVideoAdmin(ContentAdmin):
     # Show all objects in admin
     def get_queryset(self, request):
          return SectionVideo.all_objects.get_queryset()
+
+
+class SectionTeamAdmin(ContentAdmin):
+    """
+    Manages team admin
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order')
+        },),
+        ('Team Fields', {
+            'fields': ('team',)
+        },)
+    )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionTeam.all_objects.get_queryset()
 
 
 
@@ -173,3 +200,4 @@ admin.site.register(SectionTwoColumn, SectionTwoColumnAdmin)
 admin.site.register(SectionThreeColumn, SectionThreeColumnAdmin)
 admin.site.register(SectionVideoGroup, SectionVideoGroupAdmin)
 admin.site.register(SectionVideo, SectionVideoAdmin)
+admin.site.register(SectionTeam, SectionTeamAdmin)

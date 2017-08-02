@@ -2,6 +2,7 @@ from django.db import models
 from entries.models import Entry
 from social.models import Social
 from video.models import VideoGroup, Video
+from profiles.models import Team
 
 # Tinymce: wysiwyg editor for django admin
 # https://github.com/aljosa/django-tinymce
@@ -110,6 +111,8 @@ class Content(Entry):
             return "videogroup"
         elif hasattr(self, "sectionvideo"):
             return "video"
+        elif hasattr(self, "sectionteam"):
+            return "team"
         return None
 
 
@@ -254,3 +257,22 @@ class SectionVideo(Content):
         """
 
         verbose_name_plural = "Sections - Single Video Template"
+
+
+class SectionTeam(Content):
+    """
+    Section for team
+    """
+
+    # Multi table inheritance pointer to Content
+    content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
+
+    # Video Group
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Team Template"
