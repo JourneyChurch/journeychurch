@@ -10,7 +10,11 @@ register = template.Library()
 @register.inclusion_tag("pages/sections/video.html")
 def video_group(section):
 
+    # Assume these are empty first
     first_video = None
+    video_title = None
+    video_description = None
+    youtube_id = None
 
     # Make sure video group exists and is public
     try:
@@ -18,7 +22,7 @@ def video_group(section):
     except VideoGroup.DoesNotExist:
         video_group = None
 
-    # If video group is public try to get first video
+    # If video group exists and is public try to get first video
     if video_group != None:
         first_video = video_group.video_set.order_by('-entry_date').first()
 
@@ -26,16 +30,6 @@ def video_group(section):
             video_title = first_video.display_title
             video_description = first_video.description
             youtube_id = first_video.youtube_id
-        else:
-            video_title = None
-            video_description = None
-            youtube_id = None
-
-    # If video group is not public, leave blank
-    else:
-        video_title = None
-        video_description = None
-        youtube_id = None
 
     context = {
         "title": section.display_title,
