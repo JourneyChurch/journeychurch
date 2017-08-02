@@ -2,26 +2,28 @@
 {% load social %}
 {% load content %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>{{ page.title }}</h1>
+<section id="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>{{ page.title }}</h1>
 
-      {% if page.subtitle %}
-        <h3>{{ page.subtitle }}</h3>
-      {% endif %}
+        {% if page.subtitle %}
+          <h3>{{ page.subtitle }}</h3>
+        {% endif %}
 
-      {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
+        {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
 
-      {% if page.menu %}
-        {% navigation_menu title=page.menu.title current_slug=current_slug inline=True %}
-      {% endif %}
+        {% if page.menu %}
+          {% navigation_menu title=page.menu.title current_slug=current_slug inline=True %}
+        {% endif %}
 
-      {% if page.social %}
-        {% social title=page.social.title %}
-      {% endif %}
+        {% if page.social %}
+          {% social title=page.social.title %}
+        {% endif %}
 
-      {% if page.background_image %}<img src="{{ page.background_image.url }}" class="img-responsive">{% endif %}
+        {% if page.background_image %}<img src="{{ page.background_image.url }}" class="img-responsive">{% endif %}
+      </div>
     </div>
   </div>
-</div>
+</section>
