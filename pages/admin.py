@@ -1,6 +1,6 @@
 from django.contrib import admin
 from entries.admin import EntryAdmin
-from pages.models import Page, NavigationMenu, NavigationItem, SectionDefault, SectionTwoColumn, SectionThreeColumn, SectionVideoGroup, SectionVideo, SectionTeam
+from pages.models import *
 
 
 class PagesAdmin(EntryAdmin):
@@ -170,6 +170,27 @@ class SectionVideoAdmin(ContentAdmin):
          return SectionVideo.all_objects.get_queryset()
 
 
+class SectionSeriesAdmin(ContentAdmin):
+    """
+    Manages admin for video section template
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order')
+        },),
+        ('Series Fields', {
+            'fields': ('series_type',)
+        },)
+    )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionSeries.all_objects.get_queryset()
+
+
 class SectionTeamAdmin(ContentAdmin):
     """
     Manages team admin
@@ -200,4 +221,5 @@ admin.site.register(SectionTwoColumn, SectionTwoColumnAdmin)
 admin.site.register(SectionThreeColumn, SectionThreeColumnAdmin)
 admin.site.register(SectionVideoGroup, SectionVideoGroupAdmin)
 admin.site.register(SectionVideo, SectionVideoAdmin)
+admin.site.register(SectionSeries, SectionSeriesAdmin)
 admin.site.register(SectionTeam, SectionTeamAdmin)

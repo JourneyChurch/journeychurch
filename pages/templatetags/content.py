@@ -37,6 +37,11 @@ def content(sections):
                 "object": section.sectionvideo,
                 "type": "video"
             })
+        elif section.section_type() == "series":
+            sections_out.append({
+                "object": section.sectionseries,
+                "type": "series"
+            })
         elif section.section_type() == "team":
             sections_out.append({
                 "object": section.sectionteam,

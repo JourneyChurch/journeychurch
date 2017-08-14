@@ -1,7 +1,7 @@
 from django.db import models
 from entries.models import Entry
 from social.models import Social
-from video.models import VideoGroup, Video
+from media.models import VideoGroup, Video
 from profiles.models import Team
 
 # Tinymce: wysiwyg editor for django admin
@@ -111,6 +111,8 @@ class Content(Entry):
             return "videogroup"
         elif hasattr(self, "sectionvideo"):
             return "video"
+        elif hasattr(self, "sectionseries"):
+            return "series"
         elif hasattr(self, "sectionteam"):
             return "team"
         return None
@@ -257,6 +259,29 @@ class SectionVideo(Content):
         """
 
         verbose_name_plural = "Sections - Single Video Template"
+
+
+class SectionSeries(Content):
+    """
+    Section for series
+    """
+
+    # Multi table inheritance pointer to Content
+    content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
+
+    # Type of series
+    SERIES_TYPES = (
+        ('weekend', 'Weekend'),
+        ('college', 'College'),
+    )
+    series_type = models.CharField(max_length=7, choices=SERIES_TYPES, default='weekend')
+
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Series Template"
 
 
 class SectionTeam(Content):

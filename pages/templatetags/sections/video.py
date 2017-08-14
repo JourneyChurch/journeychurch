@@ -1,7 +1,7 @@
 from django import template
 from django.shortcuts import get_object_or_404
 from pages.models import Content
-from video.models import Video
+from media.models import Video
 
 register = template.Library()
 
@@ -34,7 +34,8 @@ def video(section):
         "background_color": section.background_color,
         "video_title": video_title,
         "video_description": video_description,
-        "youtube_id": video_youtube_id
+        "youtube_id": video_youtube_id,
+        "more_link": None
     }
 
     return context

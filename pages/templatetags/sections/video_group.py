@@ -1,7 +1,7 @@
 from django import template
 from django.shortcuts import get_object_or_404
 from pages.models import Content
-from video.models import VideoGroup
+from media.models import VideoGroup
 
 register = template.Library()
 
@@ -31,15 +31,22 @@ def video_group(section):
             video_description = first_video.description
             youtube_id = first_video.youtube_id
 
+    # Check for display title
+    if section.display_title:
+        title = section.display_title
+    else:
+        title = section.title
+
     context = {
-        "title": section.display_title,
+        "title": title,
         "slug": section.slug,
         "background_image": section.background_image,
         "background_color": section.background_color,
         "video": first_video,
         "video_title": video_title,
         "video_description": video_description,
-        "youtube_id": youtube_id
+        "youtube_id": youtube_id,
+        "more_link": "/media/watch/group/"
     }
 
     return context

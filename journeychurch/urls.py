@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^profiles/(?P<slug>[-\w]+)/$', profiles.views.get_profile),
     url(r'^team/(?P<slug>[-\w]+)/$', profiles.views.get_profiles_by_team),
     url(r'^team/$', profiles.views.get_all_profiles),
+    url(r'^media/', include('media.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('pages.urls')),
 ]

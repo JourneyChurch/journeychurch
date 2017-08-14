@@ -3,6 +3,7 @@
 {% load sections.three_column %}
 {% load sections.video_group %}
 {% load sections.video %}
+{% load sections.series %}
 {% load sections.team %}
 
 {% for section in sections %}
@@ -21,6 +22,9 @@
 
   {% elif section.type == "video" %}
     {% video section=section.object %}
+
+    {% elif section.type == "series" %}
+      {% series section=section.object %}
 
   {% elif section.type == "team" %}
     {% team section=section.object %}
