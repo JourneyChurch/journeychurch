@@ -34,8 +34,7 @@ def video(section):
         "background_color": section.background_color,
         "video_title": video_title,
         "video_description": video_description,
-        "youtube_id": video_youtube_id,
-        "more_link": None
+        "youtube_id": video_youtube_id
     }
 
     return context

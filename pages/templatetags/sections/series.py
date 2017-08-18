@@ -7,13 +7,19 @@ register = template.Library()
 
 # Default Section:
 # Custom Tag that can be accessed by {% series %}. Creates fields for a default type section
-@register.inclusion_tag("pages/sections/video.html")
+@register.inclusion_tag("pages/sections/series.html")
 def series(section):
+
+    if section.display_title:
+        section_title = section.display_title
+    else:
+        section_title = section.title
 
     # Assume these are empty first
     video_title = None
     video_description = None
     youtube_id = None
+    speaker = None
 
     # type of series
     series_type = section.series_type
@@ -32,6 +38,7 @@ def series(section):
     # latest experience video
     if latest_experience:
         video_id = latest_experience.video.id
+        speaker = latest_experience.speaker
 
         try:
             video = Video.objects.get(id=video_id)
@@ -59,7 +66,7 @@ def series(section):
 
 
     context = {
-        "title": section.title,
+        "title": section_title,
         "slug": section.slug,
         "background_image": section.background_image,
         "background_color": section.background_color,
@@ -67,7 +74,8 @@ def series(section):
         "video_title": video_title,
         "video_description": video_description,
         "youtube_id": youtube_id,
-        "more_link": "/media/series/"
+        "series": latest_series,
+        "speaker": speaker
     }
 
     return context

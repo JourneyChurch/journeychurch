@@ -14,7 +14,9 @@
 
       <div class="col-md-4">
         {% if video_title %}<h2>{{ video_title }}</h2>{% endif %}
+        {% if speaker %}<h4>By <a href="/profiles/{{ speaker.slug }}">{{ speaker.title }}</a></h4>{% endif %}
         {% if video_description %}<p>{{ video_description|safe }}</p>{% endif %}<br>
+        <a href="/media/series/{{ series.slug }}" class="btn btn-default">More in {{ series.title }}</a>
       </div>
 
       <div class="clearfix"></div>

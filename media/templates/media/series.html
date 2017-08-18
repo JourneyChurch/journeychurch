@@ -1,0 +1,25 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h1>{{ title }}</h1>
+      <h5>{{ date }}</h5>
+      
+      <img src="{{ image }}" class="img-responsive" />
+
+      {% for experience in experiences %}
+        <div class="col-sm-3">
+          <a href="/media/experience/{{ experience.slug }}">
+            <img src="{{ image }}" class="img-responsive" />
+          </a>
+          <h5>{{ experience.title }}</h5>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

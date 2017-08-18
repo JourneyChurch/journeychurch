@@ -7,7 +7,7 @@ register = template.Library()
 
 # Default Section:
 # Custom Tag that can be accessed by {% video_group %}. Creates fields for a default type section
-@register.inclusion_tag("pages/sections/video.html")
+@register.inclusion_tag("pages/sections/video_group.html")
 def video_group(section):
 
     # Assume these are empty first
@@ -46,7 +46,7 @@ def video_group(section):
         "video_title": video_title,
         "video_description": video_description,
         "youtube_id": youtube_id,
-        "more_link": "/media/watch/group/"
+        "group": video_group
     }
 
     return context
