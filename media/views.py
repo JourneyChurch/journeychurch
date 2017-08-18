@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from media.models import Series, Experience
+from media.models import Series, Experience, VideoGroup, Video
 from utils.dates.format import format_two_dates
 
 
@@ -82,9 +82,29 @@ def get_experience(request, slug):
 
 # Show one videogroup
 def get_video_group(request, slug):
-    return HttpResponse("Video Group %s" % slug)
+
+    # get video group by slug
+    video_group = get_object_or_404(VideoGroup, slug=slug)
+
+    # Get videos from video group
+    videos = Video.objects.filter(video_groups__id=video_group.id)
+
+    context = {
+        "video_group": video_group,
+        "videos": videos
+    }
+
+    return render(request, 'media/watch/group.html', context)
 
 
 # Show one video
 def get_video(request, slug):
-    return HttpResponse("Video %s" % slug)
+
+    # Get video by slug
+    video = get_object_or_404(Video, slug=slug)
+
+    context = {
+        "video": video
+    }
+
+    return render(request, 'media/watch/details.html', context)
