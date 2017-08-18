@@ -10,7 +10,10 @@ urlpatterns = [
     url(r'series/$', views.get_all_series),
 
     #   Maps one experience
-    url(r'experience/(?P<slug>[-\w]+)/$', views.get_experience),
+    url(r'experiences/(?P<slug>[-\w]+)/$', views.get_experience, name='get_experience'),
+
+    # Maps all experiences
+    url(r'experiences/$', views.get_all_experiences),
 
     # Maps one video group
     url(r'watch/group/(?P<slug>[-\w]+)/$', views.get_video_group),

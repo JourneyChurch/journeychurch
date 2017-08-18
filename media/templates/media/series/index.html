@@ -1,0 +1,24 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+  All Series
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>All Series</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      {% for series in all_series %}
+        <div class="col-sm-3">
+          <a href="/media/series/{{ series.slug }}"><img src="{{ series.image.url }}" class="img-responsive"/></a>
+          <h5>{{ series.title }}</h5>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

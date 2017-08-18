@@ -1,0 +1,46 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+  {{ experience.title }}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ experience.video.youtube_id }}?rel=0&modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <h1>{{ experience.title }}</h1>
+        <h3>Series: {{ experience.series.title }}</h3>
+        {% if experience.speaker %}<h4><a href="/profiles/{{ experience.speaker.slug }}">{{ experience.speaker.title }}</a></h4>{% endif %}
+        <h5>{{ experience.entry_date | date:"F d, Y" }}</h5>
+      </div>
+
+      <div class="clearfix"></div>
+
+      {% if experience.notes %}
+      <div class="col-sm-8">
+        <h3>Notes</h3>
+        {{ experience.notes | safe }}
+      </div>
+      {% endif %}
+
+      {% if other_experiences %}
+        <div class="col-sm-12">
+          <h1>More in Series {{ experience.series.title }}</h1>
+        </div>
+
+        {% for other_experience in other_experiences %}
+          <div class="col-sm-3">
+            <a href="/media/experiences/{{ other_experience.slug }}"><img src="{{ experience.series.image.url }}" class="img-responsive"/></a>
+            <h5>{{ other_experience.title }}</h5>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
