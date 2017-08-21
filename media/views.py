@@ -103,8 +103,15 @@ def get_video(request, slug):
     # Get video by slug
     video = get_object_or_404(Video, slug=slug)
 
+    # Get video_groups
+    video_groups_ids = video.video_groups.only("id")
+
+    # Related videos
+    related_videos = Video.objects.exclude(id=video.id).filter(video_groups__id__in=video_groups_ids)
+
     context = {
-        "video": video
+        "video": video,
+        "related_videos": related_videos
     }
 
     return render(request, 'media/watch/details.html', context)

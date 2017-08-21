@@ -15,24 +15,23 @@
 
       <div class="col-sm-4">
         <h1>{{ video.title }}</h1>
-        <h3>{{ video_group.title }}</h3>
         <h5>{{ experience.entry_date | date:"F d, Y" }}</h5>
       </div>
 
       <div class="clearfix"></div>
 
-      <!--{% if other_experiences %}
+      {% if related_videos %}
         <div class="col-sm-12">
-          <h1>More in {{ video_group.title }}</h1>
+          <h1>Related</h1>
         </div>
 
-        {% for other_experience in other_experiences %}
+        {% for related_video in related_videos %}
           <div class="col-sm-3">
-            <a href="/media/experiences/{{ other_experience.slug }}"><img src="{{ experience.series.image.url }}" class="img-responsive"/></a>
-            <h5>{{ other_experience.title }}</h5>
+            <!--<a href="/media/experiences/{{ other_video.slug }}"><img src="{{ experience.series.image.url }}" class="img-responsive"/></a>-->
+            <a href="/media/watch/{{ related_video.slug }}"><h5>{{ related_video.title }}</h5></a>
           </div>
         {% endfor %}
-      {% endif %}-->
+      {% endif %}
     </div>
   </div>
 {% endblock %}
