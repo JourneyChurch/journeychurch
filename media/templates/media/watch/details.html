@@ -27,8 +27,8 @@
 
         {% for related_video in related_videos %}
           <div class="col-sm-3">
-            <!--<a href="/media/experiences/{{ other_video.slug }}"><img src="{{ experience.series.image.url }}" class="img-responsive"/></a>-->
-            <a href="/media/watch/{{ related_video.slug }}"><h5>{{ related_video.title }}</h5></a>
+            <a href="/media/watch/{{ related_video.slug }}"><img src="https://img.youtube.com/vi/{{ related_video.youtube_id }}/0.jpg" class="img-responsive"/></a>
+            <h5>{{ related_video.title }}</h5>
           </div>
         {% endfor %}
       {% endif %}
