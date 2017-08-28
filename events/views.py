@@ -13,10 +13,10 @@ def get_all_events(request):
     stop_date = request.GET.get("stopdate", None)
 
     # Get page index query variable. If there isn't one, set to None
-    page_index = request.GET.get("pageIndex", None)
+    page_index = request.GET.get("pageIndex", 0)
 
     # Get page size query variable. If there isn't one, set to None
-    page_size = request.GET.get("pageSize", None)
+    page_size = request.GET.get("pageSize", 20)
 
     # Make acs connection
     acs_connection = ACSConnection()
@@ -26,7 +26,10 @@ def get_all_events(request):
 
     context = {
         "events": data["events"],
-        "error": data["error"]
+        "error": data["error"],
+        "page_count": data["page_count"],
+        "page_index": data["page_index"],
+        "page_size": data["page_size"]
     }
 
     return render(request, 'events/index.html', context)

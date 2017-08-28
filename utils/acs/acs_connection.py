@@ -56,16 +56,24 @@ class ACSConnection:
 
         # If successful, turn json into dictionary
         if data.status_code == 200:
-            data = data.json()["Page"]
+
+            # Convert json to dictionary
+            data = data.json()
+            page = data["Page"]
 
             # Add list of dictionaries for each event
-            for event in data:
+            for event in page:
                 events.append({
                     "name": event["EventName"],
                     "description": event["Description"],
                     "start_date": datetime.strptime(event["StartDate"], "%Y-%m-%d %H:%M:%S.%f"),
                     "id": event["EventId"]
                 })
+
+            # Get page variables
+            page_count = data["PageCount"]
+            page_index = data["PageIndex"]
+            page_size = data["PageSize"]
 
         # If unsuccessful give error message
         else:
@@ -74,6 +82,9 @@ class ACSConnection:
         # Return dictionary with events and errors
         return {
             "events": events,
+            "page_count": page_count,
+            "page_index": page_index,
+            "page_size": page_size,
             "error": error
         }
 

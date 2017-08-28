@@ -22,6 +22,16 @@
           <div class="clearfix"></div>
         {% endfor %}
       {% endif %}
+
+      <div class="col-sm-12">
+        {% if page_index > 0 %}
+          <a href="/events?pageIndex={{ page_index | add:"-1" }}&pageSize={{ page_size }}">Previous</a>
+        {% endif %}
+
+        {% if page_index < page_count|add:"-1" %}
+          <a href="/events?pageIndex={{ page_index | add:"1" }}&pageSize={{ page_size }}">Next</a>
+        {% endif %}
+      </div>
     </div>
   </div>
 {% endblock %}
