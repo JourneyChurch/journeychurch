@@ -1,0 +1,27 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+  Events
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      {% if error %}
+        <div class="col-sm-12">
+          <h1>{{ error }}</h1>
+        </div>
+      {% else %}
+        {% for event in events %}
+          <div class="col-sm-8">
+            <p>{{ event.start_date | date:"M d, Y l" }}</p>
+            {% if event.name %}<a href="/events/{{ event.id }}"><h3>{{ event.name }}</h3></a>{% endif %}
+            {% if event.description %}<p>{{ event.description }}</p>{% endif %}
+          </div>
+
+          <div class="clearfix"></div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

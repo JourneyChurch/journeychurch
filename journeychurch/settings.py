@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from journeychurch.config import *
+from journeychurch.config import app
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,13 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secret_key
+SECRET_KEY = app["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = debug
+DEBUG = app["DEBUG"]
 
 
-ALLOWED_HOSTS = allowed_hosts
+ALLOWED_HOSTS = app["ALLOWED_HOSTS"]
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'social.apps.SocialConfig',
     'media.apps.MediaConfig',
+    'events.apps.EventsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,10 +84,10 @@ WSGI_APPLICATION = 'journeychurch.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': database[0],
-        'NAME': database[1],
-        'USER': database[2],
-        'PASSWORD': database[3]
+        'ENGINE': app["DATABASE"]["ENGINE"],
+        'NAME': app["DATABASE"]["NAME"],
+        'USER': app["DATABASE"]["USER"],
+        'PASSWORD': app["DATABASE"]["PASSWORD"]
     }
 }
 

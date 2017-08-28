@@ -15,7 +15,7 @@
 
       <div class="col-sm-4">
         <h1>{{ video.title }}</h1>
-        <h5>{{ experience.entry_date | date:"F d, Y" }}</h5>
+        <h5>{{ video.entry_date | date:"F d, Y" }}</h5>
       </div>
 
       <div class="clearfix"></div>
@@ -27,7 +27,7 @@
 
         {% for related_video in related_videos %}
           <div class="col-sm-3">
-            <a href="/media/watch/{{ related_video.slug }}"><img src="https://img.youtube.com/vi/{{ related_video.youtube_id }}/0.jpg" class="img-responsive"/></a>
+            <a href="/media/watch/{{ related_video.slug }}"><div class="thumbnail-wrapper"><img src="https://img.youtube.com/vi/{{ related_video.youtube_id }}/0.jpg" class="img-responsive"/></div></a>
             <h5>{{ related_video.title }}</h5>
           </div>
         {% endfor %}
