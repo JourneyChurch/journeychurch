@@ -1,21 +1,29 @@
 from django.shortcuts import render
-from datetime import datetime
+from datetime import datetime, timedelta
 from utils.acs.acs_connection import ACSConnection
 import json
 
 # Get all events from ACS
 def get_all_events(request):
 
-    # Get start date query variable. If there isn't one, make the start date now by default
-    start_date = request.GET.get("startdate", datetime.now().strftime("%m/%d/%Y"))
+    # Default for start date is now
+    start_date_default = datetime.now().strftime("%m/%d/%Y")
 
-    # Get stop date query variable. If there isn't one, set to None
-    stop_date = request.GET.get("stopdate", None)
+    # Default for stop date is 30 days in future
+    stop_date_default = datetime.now() + timedelta(days=30)
+    stop_date_default = stop_date_default.strftime("%m/%d/%Y")
 
-    # Get page index query variable. If there isn't one, set to None
+
+    # Get start date query variable. If there isn't one, set to start date default
+    start_date = request.GET.get("startdate", start_date_default)
+
+    # Get stop date query variable. If there isn't one, set to stop date default
+    stop_date = request.GET.get("stopdate", stop_date_default)
+
+    # Get page index query variable. If there isn't one, set to 0
     page_index = request.GET.get("pageIndex", 0)
 
-    # Get page size query variable. If there isn't one, set to None
+    # Get page size query variable. If there isn't one, set to 20
     page_size = request.GET.get("pageSize", 20)
 
     # Make acs connection
@@ -29,7 +37,9 @@ def get_all_events(request):
         "error": data["error"],
         "page_count": data["page_count"],
         "page_index": data["page_index"],
-        "page_size": data["page_size"]
+        "page_size": data["page_size"],
+        "start_date": start_date,
+        "stop_date": stop_date
     }
 
     return render(request, 'events/index.html', context)

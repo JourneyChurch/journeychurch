@@ -4,6 +4,10 @@
   Events
 {% endblock %}
 
+{% block header_includes %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock %}
+
 {% block content %}
   <div class="container">
     <div class="row">
@@ -12,6 +16,25 @@
           <h1>{{ error }}</h1>
         </div>
       {% else %}
+        <div class="col-sm-12">
+          <form action="/events" method="GET" class="form-inline">
+            <div class="form-group">
+              <label for="start-date">Start Date</label>
+              <input type="text" id="start-date" name="startdate" value="{{ start_date }}" placeholder="Start Date">
+            </div>
+
+            <div class="form-group">
+              <label for="stop-date">Stop Date</label>
+              <input type="text" id="stop-date" name="stopdate" value="{{ stop_date }}" placeholder="Stop Date">
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-default">Apply</button>
+              <a href="/events" class="btn btn-default">Reset</a>
+            </div>
+          </form>
+        </div>
+
         {% for event in events %}
           <div class="col-sm-8">
             <p>{{ event.start_date | date:"M d, Y l" }}</p>
@@ -25,13 +48,24 @@
 
       <div class="col-sm-12">
         {% if page_index > 0 %}
-          <a href="/events?pageIndex={{ page_index | add:"-1" }}&pageSize={{ page_size }}">Previous</a>
+          <a href="/events?pageIndex={{ page_index | add:"-1" }}&startdate={{ start_date }}&stopdate={{ stop_date }}" class="btn btn-default">Previous</a>
         {% endif %}
 
         {% if page_index < page_count|add:"-1" %}
-          <a href="/events?pageIndex={{ page_index | add:"1" }}&pageSize={{ page_size }}">Next</a>
+          <a href="/events?pageIndex={{ page_index | add:"1" }}&startdate={{ start_date }}&stopdate={{ stop_date }}" class="btn btn-default">Next</a>
         {% endif %}
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block footer_includes %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+  <script>
+  $(document).ready(function() {
+    $("#start-date, #stop-date").datepicker();
+  });
+  </script>
 {% endblock %}
