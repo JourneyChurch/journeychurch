@@ -38,7 +38,7 @@
         {% for event in events %}
           <div class="col-sm-8">
             <p>{{ event.start_date | date:"M d, Y l" }}</p>
-            {% if event.name %}<a href="/events/{{ event.id }}"><h3>{{ event.name }}</h3></a>{% endif %}
+            {% if event.name %}<a href="/events/all/{{ event.id }}"><h3>{{ event.name }}</h3></a>{% endif %}
             {% if event.description %}<p>{{ event.description }}</p>{% endif %}
           </div>
 
@@ -48,11 +48,11 @@
 
       <div class="col-sm-12">
         {% if page_index > 0 %}
-          <a href="/events?pageIndex={{ page_index | add:"-1" }}&startdate={{ start_date }}&stopdate={{ stop_date }}" class="btn btn-default">Previous</a>
+          <a href="/events/all?pageIndex={{ page_index | add:"-1" }}&startdate={{ start_date }}&stopdate={{ stop_date }}" class="btn btn-default">Previous</a>
         {% endif %}
 
         {% if page_index < page_count|add:"-1" %}
-          <a href="/events?pageIndex={{ page_index | add:"1" }}&startdate={{ start_date }}&stopdate={{ stop_date }}" class="btn btn-default">Next</a>
+          <a href="/events/all?pageIndex={{ page_index | add:"1" }}&startdate={{ start_date }}&stopdate={{ stop_date }}" class="btn btn-default">Next</a>
         {% endif %}
       </div>
     </div>

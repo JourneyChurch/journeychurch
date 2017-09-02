@@ -1,0 +1,50 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+  Events
+{% endblock %}
+
+{% block header_includes %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      {% if error %}
+        <div class="col-sm-12">
+          <h1>{{ error }}</h1>
+        </div>
+      {% else %}
+        {% for event in events %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div id="cover-img-{{ event.cover.id }}" class="cover-img"></div>
+
+          <script>
+            $.ajax({
+              url: "https://graph.facebook.com/{{ api_version }}/{{ event.id }}?fields=cover&access_token={{ access_token }}",
+              dataType: "JSON",
+              success: function(data) {
+                if (data.cover) {
+                  var source = data.cover.source;
+                  $("#cover-img-{{ event.cover.id }}").css("background-image", "url('" + source + "')");
+                }
+              }
+            });
+          </script>
+
+          <style>
+            .cover-img {
+              height:200px;
+              width:100%;
+              background-position: center;
+              background-size: cover;
+            }
+          </style>
+          <a href="/events/{{ event.id }}"><h5>{{ event.name }}</h5></a>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

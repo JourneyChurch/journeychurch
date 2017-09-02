@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from datetime import datetime, timedelta
 from utils.acs.acs_connection import ACSConnection
+from utils.facebook.facebook_connection import FacebookConnection
 import json
 
 # Get all events from ACS
-def get_all_events(request):
+def get_all_acs_events(request):
 
     # Default for start date is now
     start_date_default = datetime.now().strftime("%m/%d/%Y")
@@ -42,11 +43,11 @@ def get_all_events(request):
         "stop_date": stop_date
     }
 
-    return render(request, 'events/index.html', context)
+    return render(request, 'events/acs/index.html', context)
 
 
 # Get single event from ACS
-def get_event(request, id):
+def get_acs_event(request, id):
 
     # Make acs connection
     acs_connection = ACSConnection()
@@ -59,4 +60,56 @@ def get_event(request, id):
         "error": data["error"]
     }
 
-    return render(request, 'events/details.html', context)
+    return render(request, 'events/acs/details.html', context)
+
+
+# Get single event from Facebook
+def get_facebook_event(request, id):
+
+    context = {
+        "event": None,
+        "error": None
+    }
+
+    return render(request, 'events/facebook/details.html', context)
+
+
+# Get all events from Facebook
+def get_all_facebook_events(request):
+
+    # Create facebook connection
+    facebook_connection = FacebookConnection()
+
+    # Get access token
+    data_access_token = facebook_connection.get_app_access_token()
+
+    # If access token was retrieved
+    if data_access_token["access_token"] != None:
+
+        # Get all events using access token
+        access_token = data_access_token["access_token"]
+        data_events = facebook_connection.get_all_events(access_token)
+
+        # If events were recieved
+        if data_events["events"] != None:
+            events = data_events["events"]
+            error = None
+
+        # If events were not recieved
+        else:
+            error = data_events["error"]
+            events = None
+
+    # If access token was not recieved
+    else:
+        error = data_access_token["error"]
+        events = None
+
+    context = {
+        "events": events,
+        "error": error,
+        "access_token": access_token,
+        "api_version": FacebookConnection.api_version
+    }
+
+    return render(request, 'events/facebook/index.html', context)
