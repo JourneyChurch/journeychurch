@@ -16,13 +16,7 @@
           <h1>{{ error }}</h1>
         </div>
       {% else %}
-        <div class="col-sm-12">
-          <br>
-          <a href="/events/all" class="btn btn-default">All Events</a>
-          <br><br>
-        </div>
-        {% for event in events %}
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6">
           <div id="cover-img-{{ event.cover.id }}" class="cover-img"></div>
 
           <script>
@@ -40,15 +34,31 @@
 
           <style>
             .cover-img {
-              height:200px;
+              height:300px;
               width:100%;
               background-position: center;
               background-size: cover;
             }
           </style>
-          <a href="/events/{{ event.id }}"><h5>{{ event.name }}</h5></a>
         </div>
-        {% endfor %}
+
+        <div class="col-sm-6">
+
+        </div>
+
+        <div class="col-sm-6">
+          <h2>{{ event.name }}</h2>
+          <h4>{{ event.place.name }} | {{ event.place.location.city }}, {{ event.place.location.state }}</h4>
+          <h5>Start: {{ event.start_time }}</h5>
+          <h5>End: {{ event.end_time }}</h5>
+          <h5>Attending on Facebook: {{ event.attending_count }}</h5>
+          {% if ticket_uri %}<a href="{{ ticket_uri }}" class="btn btn-default">Register</a>{% endif %}
+        </div>
+
+        <div class="col-sm-8">
+          <br>
+          <p>{{ event.description }}</p>
+        </div>
       {% endif %}
     </div>
   </div>

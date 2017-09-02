@@ -17,7 +17,7 @@
         </div>
       {% else %}
         <div class="col-sm-12">
-          <form action="/events" method="GET" class="form-inline">
+          <form action="/events/all" method="GET" class="form-inline">
             <div class="form-group">
               <label for="start-date">Start Date</label>
               <input type="text" id="start-date" name="startdate" value="{{ start_date }}" placeholder="Start Date">
@@ -37,6 +37,7 @@
 
         {% for event in events %}
           <div class="col-sm-8">
+            <br><br>
             <p>{{ event.start_date | date:"M d, Y l" }}</p>
             {% if event.name %}<a href="/events/all/{{ event.id }}"><h3>{{ event.name }}</h3></a>{% endif %}
             {% if event.description %}<p>{{ event.description }}</p>{% endif %}

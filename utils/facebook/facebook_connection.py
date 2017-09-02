@@ -1,3 +1,4 @@
+from datetime import datetime
 from journeychurch.config import facebook
 import requests
 
@@ -17,12 +18,10 @@ class FacebookConnection:
     # Facebook App secret
     app_secret = facebook["APP_SECRET"]
 
-    # Journeychurch.tv Facebook Page ID
-    page_id = facebook["JOURNEYCHURCHTV"]["PAGE_ID"]
 
-    # Page events api url
-    page_events_api_fields = "attending_count,cover,description,end_time,name,owner,place,start_time,ticket_uri"
-    page_events_api_url = "https://graph.facebook.com/{}/{}/events?fields={}".format(api_version, page_id, page_events_api_fields)
+    # Constructor takes app id for different facebook pages
+    def __init__(self, page_id):
+        self.page_id = page_id
 
 
     # Get app access token
@@ -50,11 +49,50 @@ class FacebookConnection:
         }
 
 
+    # Get single facebook event
+    def get_event(self, access_token, event_id):
+
+        # Page events api url
+        event_api_url = "https://graph.facebook.com/{}/{}?fields=".format(self.api_version, event_id)
+
+        # Api fields to get
+        api_fields = "attending_count,cover,description,end_time,name,place,start_time,ticket_uri"
+
+        # Get events
+        query_url = event_api_url + api_fields
+
+        # GET request for events using OAuth access token
+        data = requests.get(query_url, headers={'Authorization': "OAuth {}".format(access_token)})
+
+        # If successful extract json events
+        if data.status_code == 200:
+            event = data.json()
+
+            # Convert start and end times to datetime objects
+            event["end_time"] = datetime.strptime(event["end_time"], "%Y-%m-%dT%H:%M:%S-%f")
+            event["start_time"] = datetime.strptime(event["start_time"], "%Y-%m-%dT%H:%M:%S-%f")
+
+            error = None
+        else:
+            event = None
+            error = "This event could not be retrieved."
+
+        return {
+            "event": event,
+            "error": error
+        }
+
     # Get all facebook events
     def get_all_events(self, access_token):
 
+        # Page events api url
+        page_events_api_url = "https://graph.facebook.com/{}/{}/events?fields=".format(self.api_version, self.page_id)
+
+        # Api fields to get
+        api_fields = "cover,end_time,name,place,start_time"
+
         # Get events
-        query_url = self.page_events_api_url
+        query_url = page_events_api_url + api_fields
 
         # GET request for events using OAuth access token
         data = requests.get(query_url, headers={'Authorization': "OAuth {}".format(access_token)})

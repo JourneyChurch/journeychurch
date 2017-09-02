@@ -2,6 +2,7 @@ from django.shortcuts import render
 from datetime import datetime, timedelta
 from utils.acs.acs_connection import ACSConnection
 from utils.facebook.facebook_connection import FacebookConnection
+from utils.dates.format import format_two_dates
 import json
 
 # Get all events from ACS
@@ -66,9 +67,39 @@ def get_acs_event(request, id):
 # Get single event from Facebook
 def get_facebook_event(request, id):
 
+    # Create facebook connection
+    facebook_connection = FacebookConnection(page_id=174276778638)
+
+    # Get access token
+    data_access_token = facebook_connection.get_app_access_token()
+
+    # If access token was retrieved
+    if data_access_token["access_token"] != None:
+
+        # Get all events using access token
+        access_token = data_access_token["access_token"]
+        data_event = facebook_connection.get_event(access_token, id)
+
+        # If events were recieved
+        if data_event["event"] != None:
+            event = data_event["event"]
+            error = None
+
+        # If events were not recieved
+        else:
+            error = data_event["error"]
+            event = None
+
+    # If access token was not recieved
+    else:
+        error = data_access_token["error"]
+        event = None
+
     context = {
-        "event": None,
-        "error": None
+        "event": event,
+        "error": error,
+        "access_token": access_token,
+        "api_version": FacebookConnection.api_version
     }
 
     return render(request, 'events/facebook/details.html', context)
@@ -78,7 +109,7 @@ def get_facebook_event(request, id):
 def get_all_facebook_events(request):
 
     # Create facebook connection
-    facebook_connection = FacebookConnection()
+    facebook_connection = FacebookConnection(page_id=174276778638)
 
     # Get access token
     data_access_token = facebook_connection.get_app_access_token()
@@ -109,7 +140,7 @@ def get_all_facebook_events(request):
         "events": events,
         "error": error,
         "access_token": access_token,
-        "api_version": FacebookConnection.api_version
+        "api_version": FacebookConnection.api_version,
     }
 
     return render(request, 'events/facebook/index.html', context)
