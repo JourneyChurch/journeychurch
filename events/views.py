@@ -2,7 +2,7 @@ from django.shortcuts import render
 from datetime import datetime, timedelta
 from utils.acs.acs_connection import ACSConnection
 from utils.facebook.facebook_connection import FacebookConnection
-from utils.dates.format import format_two_dates
+from utils.dates.format import format_date_month_day
 import json
 
 # Get all events from ACS
@@ -99,7 +99,8 @@ def get_facebook_event(request, id):
         "event": event,
         "error": error,
         "access_token": access_token,
-        "api_version": FacebookConnection.api_version
+        "api_version": FacebookConnection.api_version,
+        "date": format_date_month_day(event["start_time"], event["end_time"])
     }
 
     return render(request, 'events/facebook/details.html', context)

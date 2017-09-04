@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from media.models import Series, Experience, VideoGroup, Video
-from utils.dates.format import format_two_dates
+from utils.dates.format import format_date_month_year
 
 
 # Show all series
@@ -35,7 +35,7 @@ def get_series(request, slug):
     end_date = experiences.reverse()[0].entry_date
 
     # format dates into one string
-    date = format_two_dates(start_date, end_date)
+    date = format_date_month_year(start_date, end_date)
 
     context = {
         "title": series.title,

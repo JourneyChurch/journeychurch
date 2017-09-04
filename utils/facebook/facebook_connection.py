@@ -56,7 +56,7 @@ class FacebookConnection:
         event_api_url = "https://graph.facebook.com/{}/{}?fields=".format(self.api_version, event_id)
 
         # Api fields to get
-        api_fields = "attending_count,cover,description,end_time,name,place,start_time,ticket_uri"
+        api_fields = "attending_count,description,end_time,name,place,start_time,ticket_uri"
 
         # Get events
         query_url = event_api_url + api_fields
@@ -75,7 +75,7 @@ class FacebookConnection:
             error = None
         else:
             event = None
-            error = "This event could not be retrieved."
+            error = "This event could not be found."
 
         return {
             "event": event,
@@ -105,7 +105,7 @@ class FacebookConnection:
             error = None
         else:
             events = None
-            error = "Events could not be retrieved."
+            error = "No events could be found."
 
         return {
             "events": events,
