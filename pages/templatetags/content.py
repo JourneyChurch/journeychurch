@@ -47,6 +47,11 @@ def content(sections):
                 "object": section.sectionteam,
                 "type": "team"
             })
+        elif section.section_type() == "events":
+            sections_out.append({
+                "object": section.sectionevents,
+                "type": "events"
+            })
 
     # Return list of dictionaries with type and section object.
     # Django templates use section.type to reference section["type"] on dictionaries

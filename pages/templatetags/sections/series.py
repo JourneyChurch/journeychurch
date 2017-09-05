@@ -5,8 +5,8 @@ from media.models import Video, Series
 
 register = template.Library()
 
-# Default Section:
-# Custom Tag that can be accessed by {% series %}. Creates fields for a default type section
+# Series Section:
+# Custom Tag that can be accessed by {% series %}. Creates fields for a series type section
 @register.inclusion_tag("pages/sections/series.html")
 def series(section):
 

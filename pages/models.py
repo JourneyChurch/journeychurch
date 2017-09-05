@@ -115,6 +115,8 @@ class Content(Entry):
             return "series"
         elif hasattr(self, "sectionteam"):
             return "team"
+        elif hasattr(self, "sectionevents"):
+            return "events"
         return None
 
 
@@ -301,3 +303,25 @@ class SectionTeam(Content):
         """
 
         verbose_name_plural = "Sections - Team Template"
+
+
+class SectionEvents(Content):
+    """
+    Section for events from Facebook Page
+    """
+
+    # Multi table inheritance pointer to Content
+    content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
+
+    # Facebook Page ID
+    facebook_page_id = models.CharField(max_length=25, null=True)
+
+    # Social Media for facebook page
+    social = models.ForeignKey(Social, on_delete=models.CASCADE)
+
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Events Template"

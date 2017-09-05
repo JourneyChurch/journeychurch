@@ -98,7 +98,7 @@
             var twitterUrl = "https://twitter.com/intent/tweet";
             var twitterMessage = "?text=Come join us {{ date }} for {{ event.name }}!";
             var shareUrl = "&url=http://journeychurch.tv/events/{{ event.id }}";
-            var via = "&via={{ social.twitter }}";
+            var via = "{% if social %}&via={{ social.twitter }}{% endif %}";
 
             $("#twitter-share-button").attr("href", twitterUrl + twitterMessage + shareUrl + via);
           });

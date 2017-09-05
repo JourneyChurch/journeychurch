@@ -83,7 +83,7 @@ class FacebookConnection:
         }
 
     # Get all facebook events
-    def get_all_events(self, access_token):
+    def get_events(self, access_token, limit=None):
 
         # Page events api url
         page_events_api_url = "https://graph.facebook.com/{}/{}/events?fields=".format(self.api_version, self.page_id)
@@ -93,6 +93,10 @@ class FacebookConnection:
 
         # Get events
         query_url = page_events_api_url + api_fields
+
+        # If limit on amount of entries returned
+        if limit:
+            query_url += "&limit=" + str(limit)
 
         # GET request for events using OAuth access token
         data = requests.get(query_url, headers={'Authorization': "OAuth {}".format(access_token)})

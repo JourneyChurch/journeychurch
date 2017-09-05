@@ -97,8 +97,10 @@ def get_facebook_event(request, id):
         event = None
 
 
-    # Get main social media
-    social = Social.objects.get(slug="journeychurchtv")
+    try:
+        social = Social.objects.get(slug="journeychurchtv")
+    except Social.DoesNotExist:
+        social = None
 
     context = {
         "event": event,
@@ -126,7 +128,7 @@ def get_all_facebook_events(request):
 
         # Get all events using access token
         access_token = data_access_token["access_token"]
-        data_events = facebook_connection.get_all_events(access_token)
+        data_events = facebook_connection.get_events(access_token)
 
         # If events were recieved
         if data_events["events"] != None:

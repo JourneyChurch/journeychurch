@@ -5,6 +5,7 @@
 {% load sections.video %}
 {% load sections.series %}
 {% load sections.team %}
+{% load sections.events %}
 
 {% for section in sections %}
 
@@ -28,6 +29,9 @@
 
   {% elif section.type == "team" %}
     {% team section=section.object %}
+
+  {% elif section.type == "events" %}
+    {% events section=section.object %}
 
   {% endif %}
 {% endfor %}

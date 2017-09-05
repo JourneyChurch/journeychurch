@@ -212,6 +212,27 @@ class SectionTeamAdmin(ContentAdmin):
          return SectionTeam.all_objects.get_queryset()
 
 
+class SectionEventsAdmin(ContentAdmin):
+    """
+    Manages section events admin
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order')
+        },),
+        ('Team Fields', {
+            'fields': ('facebook_page_id', 'social')
+        },)
+    )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionEvents.all_objects.get_queryset()
+
+
 
 admin.site.register(Page, PagesAdmin)
 admin.site.register(NavigationMenu, NavigationMenuAdmin)
@@ -223,3 +244,4 @@ admin.site.register(SectionVideoGroup, SectionVideoGroupAdmin)
 admin.site.register(SectionVideo, SectionVideoAdmin)
 admin.site.register(SectionSeries, SectionSeriesAdmin)
 admin.site.register(SectionTeam, SectionTeamAdmin)
+admin.site.register(SectionEvents, SectionEventsAdmin)
