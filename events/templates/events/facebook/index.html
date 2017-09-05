@@ -16,11 +16,6 @@
           <h1>{{ error }}</h1>
         </div>
       {% else %}
-        <div class="col-sm-12">
-          <br>
-          <a href="/events/all" class="btn btn-default">All Events</a>
-          <br><br>
-        </div>
         {% for event in events %}
         <div class="col-sm-6 col-lg-4">
           <div id="cover-img-{{ event.cover.id }}" class="cover-img"></div>

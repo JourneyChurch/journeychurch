@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from utils.acs.acs_connection import ACSConnection
 from utils.facebook.facebook_connection import FacebookConnection
 from utils.dates.format import format_date_month_day
+from social.models import Social
 import json
 
 # Get all events from ACS
@@ -95,12 +96,17 @@ def get_facebook_event(request, id):
         error = data_access_token["error"]
         event = None
 
+
+    # Get main social media
+    social = Social.objects.get(slug="journeychurchtv")
+
     context = {
         "event": event,
         "error": error,
         "access_token": access_token,
         "api_version": FacebookConnection.api_version,
-        "date": format_date_month_day(event["start_time"], event["end_time"])
+        "date": format_date_month_day(event["start_time"], event["end_time"]),
+        "social": social
     }
 
     return render(request, 'events/facebook/details.html', context)
