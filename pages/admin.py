@@ -52,6 +52,37 @@ class NavigationMenuAdmin(EntryAdmin):
          return NavigationMenu.all_objects.get_queryset()
 
 
+class PreviewGroupAdmin(EntryAdmin):
+    """
+    Manages admin for preview groups
+    """
+
+    fieldsets = (
+        EntryAdmin.fieldset,
+    )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return PreviewGroup.all_objects.get_queryset()
+
+
+class PreviewAdmin(EntryAdmin):
+    """
+    Manages admin for previews
+    """
+
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Preview Fields', {
+            'fields': ('display_title', 'description', 'url', 'url_text', 'image', 'order', 'preview_groups')
+        },)
+    )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return Preview.all_objects.get_queryset()
+
+
 class ContentAdmin(EntryAdmin):
     """
     Manages admin for all content
@@ -233,10 +264,33 @@ class SectionEventsAdmin(ContentAdmin):
          return SectionEvents.all_objects.get_queryset()
 
 
+class SectionPreviewsAdmin(ContentAdmin):
+    """
+    Manages section previews admin
+    """
+
+    # Put specific fields in field set
+    fieldsets = (
+        EntryAdmin.fieldset,
+        ('Section Fields', {
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order')
+        },),
+        ('Previews Fields', {
+            'fields': ('preview_group',)
+        },)
+    )
+
+    # Show all objects in admin
+    def get_queryset(self, request):
+         return SectionPreviews.all_objects.get_queryset()
+
+
 
 admin.site.register(Page, PagesAdmin)
 admin.site.register(NavigationMenu, NavigationMenuAdmin)
 admin.site.register(NavigationItem, NavigationItemsAdmin)
+admin.site.register(PreviewGroup, PreviewGroupAdmin)
+admin.site.register(Preview, PreviewAdmin)
 admin.site.register(SectionDefault, SectionDefaultAdmin)
 admin.site.register(SectionTwoColumn, SectionTwoColumnAdmin)
 admin.site.register(SectionThreeColumn, SectionThreeColumnAdmin)
@@ -245,3 +299,4 @@ admin.site.register(SectionVideo, SectionVideoAdmin)
 admin.site.register(SectionSeries, SectionSeriesAdmin)
 admin.site.register(SectionTeam, SectionTeamAdmin)
 admin.site.register(SectionEvents, SectionEventsAdmin)
+admin.site.register(SectionPreviews, SectionPreviewsAdmin)

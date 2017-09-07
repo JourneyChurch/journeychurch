@@ -75,6 +75,39 @@ class Page(Entry):
     social = models.ForeignKey(Social, on_delete=models.CASCADE, null=True, blank=True)
 
 
+class PreviewGroup(Entry):
+    """
+    Group of previews
+    """
+
+
+class Preview(Entry):
+    """
+    Defines a preview for another page
+    """
+
+    # Display Title
+    display_title = models.CharField(max_length=100, blank=True, null=True)
+
+    # Description
+    description = HTMLField(max_length=60000, null=True)
+
+    # Url to link to
+    url = models.CharField(max_length=2000, null=True)
+
+    # Url text
+    url_text = models.CharField(max_length=100, null=True)
+
+    # Background image (uploads to /uploads/previews/)
+    image = models.ImageField(upload_to="previews/", max_length=200, null=True)
+
+    # Order of section
+    order = models.CharField(max_length=100, null=True)
+
+    # Preview Groups
+    preview_groups = models.ManyToManyField(PreviewGroup)
+
+
 class Content(Entry):
     """
     Base Class for all content.
@@ -117,6 +150,8 @@ class Content(Entry):
             return "team"
         elif hasattr(self, "sectionevents"):
             return "events"
+        elif hasattr(self, "sectionpreviews"):
+            return "previews"
         return None
 
 
@@ -325,3 +360,22 @@ class SectionEvents(Content):
         """
 
         verbose_name_plural = "Sections - Events Template"
+
+
+class SectionPreviews(Content):
+    """
+    Section for previews
+    """
+
+    # Multi table inheritance pointer to Content
+    content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
+
+    # Preview Group
+    preview_group = models.ForeignKey(Preview, on_delete=models.CASCADE)
+
+    class Meta:
+        """
+        Plural name used in admin
+        """
+
+        verbose_name_plural = "Sections - Previews Template"

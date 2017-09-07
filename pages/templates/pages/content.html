@@ -6,6 +6,7 @@
 {% load sections.series %}
 {% load sections.team %}
 {% load sections.events %}
+{% load sections.previews %}
 
 {% for section in sections %}
 
@@ -32,6 +33,9 @@
 
   {% elif section.type == "events" %}
     {% events section=section.object %}
+
+  {% elif section.type == "previews" %}
+    {% previews section=section.object %}
 
   {% endif %}
 {% endfor %}

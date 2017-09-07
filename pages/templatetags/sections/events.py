@@ -21,7 +21,7 @@ def events(section):
 
         # Get all events using access token
         access_token = data_access_token["access_token"]
-        data_events = facebook_connection.get_events(access_token=access_token, limit=4)
+        data_events = facebook_connection.get_events(access_token=access_token, limit=3)
 
         # If events were recieved
         if data_events["events"] != None:
