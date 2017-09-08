@@ -4,12 +4,12 @@
       {% if title %}<div class="col-xs-12">{{ title }}</div>{% endif %}
 
       <div class="col-sm-6">
-        {% if image_left %}<img src="{{ image_left.url }}" class="img-responsive">{% endif %}
+        {% if image_left %}<img src="{{ image_left.url }}" class="img-responsive {% if center_text %}center-block{% endif %}">{% endif %}
         {% if content_left %}{{ content_left|safe }}{% endif %}
       </div>
 
       <div class="col-sm-6">
-        {% if image_right %}<img src="{{ image_right.url }}" class="img-responsive">{% endif %}
+        {% if image_right %}<img src="{{ image_right.url }}" class="img-responsive {% if center_text %}center-block{% endif %}">{% endif %}
         {% if content_right %}{{ content_right|safe }}{% endif %}
       </div>
 
