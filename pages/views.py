@@ -21,7 +21,7 @@ def index(request, slug=None):
     # Context for view
     context = {
         'page': page,
-        'content': page.content_set.all(),
+        'content': page.content_set.all().order_by("order"),
         'current_slug': current_slug
     }
 

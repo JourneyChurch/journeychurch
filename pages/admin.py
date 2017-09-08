@@ -121,10 +121,10 @@ class SectionTwoColumnAdmin(ContentAdmin):
             'fields': ('display_title', 'page', 'background_image', 'background_color', 'order', 'center_text')
         },),
         ('Column Left', {
-            'fields': ('title_left', 'content_left', 'image_left')
+            'fields': ('content_left', 'image_left')
         },),
         ('Column Right', {
-            'fields': ('title_right', 'content_right', 'image_right')
+            'fields': ('content_right', 'image_right')
         },)
     )
 
@@ -144,13 +144,13 @@ class SectionThreeColumnAdmin(ContentAdmin):
             'fields': ('display_title', 'page', 'background_image', 'background_color', 'order', 'center_text')
         },),
         ('Column Left', {
-            'fields': ('title_left', 'content_left', 'image_left')
+            'fields': ('content_left', 'image_left')
         },),
         ('Column Center', {
-            'fields': ('title_center', 'content_center', 'image_center')
+            'fields': ('content_center', 'image_center')
         },),
         ('Column Right', {
-            'fields': ('title_right', 'content_right', 'image_right')
+            'fields': ('content_right', 'image_right')
         },)
     )
 

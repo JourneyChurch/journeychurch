@@ -185,17 +185,11 @@ class SectionTwoColumn(Content):
     # Multi table inheritance pointer to Content
     content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
 
-    # Left title
-    title_left = models.CharField(max_length=100, blank=True, null=True)
-
     # Left column content
     content_left = HTMLField(max_length=60000, blank=True, null=True)
 
     # Left image
     image_left = models.ImageField(upload_to="content/", max_length=200, blank=True, null=True)
-
-    # Right title
-    title_right = models.CharField(max_length=100, blank=True, null=True)
 
     # Right column content
     content_right = HTMLField(max_length=60000, blank=True, null=True)
@@ -222,26 +216,17 @@ class SectionThreeColumn(Content):
     # Multi table inheritance pointer to Content
     content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
 
-    # Left title
-    title_left = models.CharField(max_length=100, blank=True, null=True)
-
     # Left column content
     content_left = HTMLField(max_length=60000, blank=True, null=True)
 
     # Left image
     image_left = models.ImageField(upload_to="content/", max_length=200, blank=True, null=True)
 
-    # Center title
-    title_center = models.CharField(max_length=100, blank=True, null=True)
-
     # Center column content
     content_center = HTMLField(max_length=60000, blank=True, null=True)
 
     # Center image
     image_center = models.ImageField(upload_to="content/", max_length=200, blank=True, null=True)
-
-    # Right title
-    title_right = models.CharField(max_length=100, blank=True, null=True)
 
     # Right column content
     content_right = HTMLField(max_length=60000, blank=True, null=True)

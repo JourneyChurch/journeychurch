@@ -14,13 +14,10 @@ def three_column(section):
         "slug": section.slug,
         "background_image": section.background_image,
         "background_color": section.background_color,
-        "title_left": section.title_left,
         "content_left": section.content_left,
         "image_left": section.image_left,
-        "title_center": section.title_center,
         "content_center": section.content_center,
         "image_center": section.image_center,
-        "title_right": section.title_left,
         "content_right": section.content_left,
         "image_right": section.image_left,
         "center_text": section.center_text
