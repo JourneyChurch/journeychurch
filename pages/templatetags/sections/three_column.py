@@ -18,8 +18,8 @@ def three_column(section):
         "image_left": section.image_left,
         "content_center": section.content_center,
         "image_center": section.image_center,
-        "content_right": section.content_left,
-        "image_right": section.image_left,
+        "content_right": section.content_right,
+        "image_right": section.image_right,
         "center_text": section.center_text
     }
 
