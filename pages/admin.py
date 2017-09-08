@@ -74,7 +74,7 @@ class PreviewAdmin(EntryAdmin):
     fieldsets = (
         EntryAdmin.fieldset,
         ('Preview Fields', {
-            'fields': ('display_title', 'description', 'url', 'url_text', 'image', 'order', 'preview_groups')
+            'fields': ('display_title', 'description', 'url', 'url_text', 'image', 'order', 'preview_group')
         },)
     )
 

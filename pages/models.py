@@ -87,7 +87,7 @@ class Preview(Entry):
     """
 
     # Display Title
-    display_title = models.CharField(max_length=100, blank=True, null=True)
+    display_title = models.CharField(max_length=100, null=True)
 
     # Description
     description = HTMLField(max_length=60000, null=True)
@@ -105,7 +105,7 @@ class Preview(Entry):
     order = models.CharField(max_length=100, null=True)
 
     # Preview Groups
-    preview_groups = models.ManyToManyField(PreviewGroup)
+    preview_group = models.ForeignKey(PreviewGroup, on_delete=models.CASCADE, null=True)
 
 
 class Content(Entry):
@@ -356,7 +356,7 @@ class SectionPreviews(Content):
     content_ptr = models.OneToOneField(Content, on_delete=models.CASCADE, parent_link=True, default=None)
 
     # Preview Group
-    preview_group = models.ForeignKey(Preview, on_delete=models.CASCADE)
+    preview_group = models.ForeignKey(PreviewGroup, on_delete=models.CASCADE)
 
     class Meta:
         """
