@@ -17,9 +17,9 @@ def two_column(section):
         "title_left": section.title_left,
         "content_left": section.content_left,
         "image_left": section.image_left,
-        "title_right": section.title_left,
-        "content_right": section.content_left,
-        "image_right": section.image_left,
+        "title_right": section.title_right,
+        "content_right": section.content_right,
+        "image_right": section.image_right,
         "center_text": section.center_text
     }
 
