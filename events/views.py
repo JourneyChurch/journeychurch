@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.http import Http404
 from datetime import datetime, timedelta
 from utils.acs.acs_connection import ACSConnection
 from utils.facebook.facebook_connection import FacebookConnection
 from utils.dates.format import format_date_month_day
 from social.models import Social
+from pages.models import SectionEvents
 import json
 
 # Get all events from ACS
@@ -66,10 +68,14 @@ def get_acs_event(request, id):
 
 
 # Get single event from Facebook
-def get_facebook_event(request, id):
+def get_facebook_event(request, event_id, page_id=174276778638):
+
+    # Check if page id is a Journey Church affiliated page
+    if not SectionEvents.objects.filter(facebook_page_id=page_id).exists():
+        raise Http404
 
     # Create facebook connection
-    facebook_connection = FacebookConnection(page_id=174276778638)
+    facebook_connection = FacebookConnection(page_id=page_id)
 
     # Get access token
     data_access_token = facebook_connection.get_app_access_token()
@@ -79,7 +85,7 @@ def get_facebook_event(request, id):
 
         # Get all events using access token
         access_token = data_access_token["access_token"]
-        data_event = facebook_connection.get_event(access_token, id)
+        data_event = facebook_connection.get_event(access_token, event_id)
 
         # If events were recieved
         if data_event["event"] != None:
@@ -96,18 +102,29 @@ def get_facebook_event(request, id):
         error = data_access_token["error"]
         event = None
 
-
+    # Get Journey Church social
     try:
         social = Social.objects.get(slug="journeychurchtv")
     except Social.DoesNotExist:
         social = None
+
+    # Check for start time and end time
+    if events["start_time"]:
+        start_time = events["start_time"]
+    else:
+        start_time = None
+
+    if events["end_time"]:
+        end_time = events["end_time"]
+    else:
+        end_time = None
 
     context = {
         "event": event,
         "error": error,
         "access_token": access_token,
         "api_version": FacebookConnection.api_version,
-        "date": format_date_month_day(event["start_time"], event["end_time"]),
+        "date": format_date_month_day(start_time, end_time),
         "social": social
     }
 
@@ -115,10 +132,14 @@ def get_facebook_event(request, id):
 
 
 # Get all events from Facebook
-def get_all_facebook_events(request):
+def get_all_facebook_events(request, page_id=174276778638):
+
+    # Check if page id is a Journey Church affiliated page
+    if not SectionEvents.objects.filter(facebook_page_id=page_id).exists():
+        raise Http404
 
     # Create facebook connection
-    facebook_connection = FacebookConnection(page_id=174276778638)
+    facebook_connection = FacebookConnection(page_id=page_id)
 
     # Get access token
     data_access_token = facebook_connection.get_app_access_token()
@@ -147,9 +168,10 @@ def get_all_facebook_events(request):
 
     context = {
         "events": events,
+        "page_id": page_id,
         "error": error,
         "access_token": access_token,
-        "api_version": FacebookConnection.api_version,
+        "api_version": FacebookConnection.api_version
     }
 
     return render(request, 'events/facebook/index.html', context)

@@ -22,6 +22,10 @@ def format_date_month_year(start_date, end_date):
 # Format two dates based on month and day
 def format_date_month_day(start_date, end_date):
 
+    # If not end date
+    if not end_date:
+        return start_date.strftime("%B %d").lstrip("0").replace(" 0", " ")
+
     # If month and day are the same
     if start_date.month == end_date.month and start_date.day == end_date.day:
         return start_date.strftime("%B %d").lstrip("0").replace(" 0", " ")
