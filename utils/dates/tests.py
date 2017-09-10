@@ -9,6 +9,24 @@ class FormatTestCase(TestCase):
 
     def test_format_date_month_year(self):
 
+        # Both dates are empty
+        start_date = None
+        end_date = None
+
+        self.assertEqual(format_date_month_year(start_date, end_date), None)
+
+        # No start date
+        start_date = None
+        end_date = datetime(2002, 1, 12)
+
+        self.assertEqual(format_date_month_year(start_date, end_date), None)
+
+        # No end date
+        start_date = datetime(2002, 1, 11)
+        end_date = None
+
+        self.assertEqual(format_date_month_year(start_date, end_date), "January 2002")
+
         # Same month and year
         start_date = datetime(2002, 1, 11)
         end_date = datetime(2002, 1, 12)
@@ -35,6 +53,24 @@ class FormatTestCase(TestCase):
 
 
     def test_format_date_month_day(self):
+
+        # Both dates are empty
+        start_date = None
+        end_date = None
+
+        self.assertEqual(format_date_month_day(start_date, end_date), None)
+
+        # No start date
+        start_date = None
+        end_date = datetime(2002, 1, 12)
+
+        self.assertEqual(format_date_month_day(start_date, end_date), None)
+
+        # No end date
+        start_date = datetime(2002, 1, 11)
+        end_date = None
+
+        self.assertEqual(format_date_month_day(start_date, end_date), "January 11")
 
         # Same month and day
         start_date = datetime(2002, 1, 11)

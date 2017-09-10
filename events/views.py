@@ -109,13 +109,13 @@ def get_facebook_event(request, event_id, page_id=174276778638):
         social = None
 
     # Check for start time and end time
-    if events["start_time"]:
-        start_time = events["start_time"]
+    if event["start_time"]:
+        start_time = event["start_time"]
     else:
         start_time = None
 
-    if events["end_time"]:
-        end_time = events["end_time"]
+    if event["end_time"]:
+        end_time = event["end_time"]
     else:
         end_time = None
 
