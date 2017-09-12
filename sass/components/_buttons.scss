@@ -1,0 +1,40 @@
+/* Buttons */
+.btn-default {
+  border:0;
+  border-radius:0;
+  text-transform:uppercase;
+  font-size:0.8em;
+  @include font-bold;
+  letter-spacing:2px;
+  padding:15px 20px;
+  @include transition(background-color 0.2s ease-in, color 0.2s ease-in);
+  &:hover, &:active, &:focus, &:active:hover {
+    background-color: $color-darker;
+    color: $color-lightest;
+    box-shadow:none;
+    @include transition(background-color 0.2s ease-in, color 0.2s ease-in);
+  }
+}
+
+.btn-fade {
+  @extend .btn-default;
+  border:2px solid $color-lightest;
+  padding:12px 18px;
+  @include transition(background-color 0.2s ease-in, color 0.2s ease-in);
+  &:hover, &:active, &:focus {
+    color: $color-lightest;
+    background-color:transparent !important;
+    border:2px solid $color-lightest !important;
+    @include transition(background-color 0.2s ease-in, color 0.2s ease-in);
+  }
+}
+
+.btn-dark {
+  @extend .btn-default;
+  color:$color-lightest;
+  background-color:$color-darkest;
+  &:hover, &:active, &:focus {
+    color: $color-lightest;
+    background-color:$color-dark;
+  }
+}

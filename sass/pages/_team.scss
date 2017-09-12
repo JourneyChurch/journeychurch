@@ -1,0 +1,25 @@
+.team {
+  padding:50px 0;
+}
+
+.bio {
+  .social {
+    margin-top:30px;
+    ul {
+      li {
+        display:inline-block;
+        margin:0 3px;
+      }
+    }
+  }
+}
+
+.bio-icon {
+  margin-bottom:30px;
+}
+
+@include media-xs {
+  .bio {
+    padding:30px;
+  }
+}

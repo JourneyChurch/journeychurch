@@ -1,0 +1,208 @@
+/* Main Nav */
+.nav {
+  width:100%;
+  height:100%;
+  background-color:rgba(0, 0, 0, 0.85);
+  position:fixed;
+  top:0px;
+  right:0px;
+  z-index:1000;
+  display:none;
+  overflow-y:scroll;
+  .nav-links-wrapper {
+    width:100%;
+    height:100%;
+    text-align:center;
+    padding:0;
+    ul {
+      li {
+        a {
+          display:inline-block;
+          padding:8px;
+          color: $color-lightest;
+          font-size:1em;
+          @include font-block-book;
+          @include transition(color 0.2s ease-in);
+          &:active, &:hover, &:focus {
+            color: $color-dark;
+            @include transition(color 0.2s ease-in);
+            text-decoration:none;
+          }
+        }
+      }
+    }
+    .social {
+      ul {
+        margin-top:35px;
+        padding-top:0;
+        li {
+          display:inline;
+          margin:0 2px;
+          &:first-child {
+            margin-left:0;
+          }
+          &:last-child {
+            margin-right:0;
+          }
+          a {
+            font-size:1.3em;
+          }
+        }
+      }
+    }
+    .nav-links {
+      @include vertical-align;
+    }
+  }
+}
+
+@include media-xs-only {
+  .nav {
+    .nav-links-wrapper {
+        @include vertical-align-wrapper;
+    }
+  }
+}
+
+@include media-sm {
+  .nav {
+    width:275px;
+    .nav-links-wrapper {
+      text-align:left;
+      padding-top:110px;
+      padding-left:23px;
+    }
+  }
+}
+
+/* Nav Icon */
+.nav-icon {
+  display:inline-block;
+  border-radius:50%;
+  padding:20px 15px;
+  float:right;
+  @include transition(background-color, 0.2s, ease-in);
+  &:hover {
+    cursor:pointer;
+  }
+  span {
+    height:2px;
+    width:20px;
+    background-color: $color-lightest;
+    display:block;
+    @include transition(transform, 0.2s, ease-in);
+
+    &:first-child {
+      margin-bottom:6px;
+    }
+  }
+}
+
+/* Nav Visible */
+.nav-visible {
+  overflow:hidden !important;
+
+  .nav-icon {
+    span {
+      @include transition(transform, 0.2s, ease-in);
+      &:first-child {
+        -webkit-transform:rotateZ(45deg) translateX(3px) translateY(2.5px);
+        -ms-transform:rotateZ(45deg) translateX(3px) translateY(2.5px);
+        -moz-transform:rotateZ(45deg) translateX(3px) translateY(2.5px);
+        -o-transform:rotateZ(45deg) translateX(3px) translateY(2.5px);
+        transform:rotateZ(45deg) translateX(3px) translateY(2.5px);
+      }
+      &:last-child {
+        -webkit-transform:rotateZ(-45deg) translateX(3px) translateY(2.5px);
+        -ms-transform:rotateZ(-45deg) translateX(3px) translateY(2.5px);
+        -moz-transform:rotateZ(-45deg) translateX(3px) translateY(2.5px);
+        -o-transform:rotateZ(-45deg) translateX(3px) translateY(2.5px);
+        transform:rotateZ(-45deg) translateX(3px) translateY(-2.5px);
+      }
+    }
+  }
+}
+
+.page-nav {
+  background-color: $color-lightest;
+  position:relative;
+  ul {
+    text-align:center;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    height:5em;
+    li {
+      display:inline-block;
+      margin:0 3px;
+      &:first-child {
+        padding-left:15px;
+      }
+      &:last-child {
+        padding-right:15px;
+      }
+      a {
+        padding:1.1em;
+        color: $color-regular;
+        font-size:0.9em;
+        @include font-block-medium;
+        @include transition(color 0.2s ease-in);
+        &:active, &:hover, &:focus {
+          color: $color-darkest;
+          @include transition(color 0.2s ease-in);
+          text-decoration:none;
+        }
+        &:hover {
+          cursor:pointer;
+        }
+        &.active {
+          color:$color-darkest;
+        }
+      }
+    }
+  }
+  .nav-shadow-left {
+    position:absolute;
+    top:0;
+    left:0px;
+    width:30px;
+    height:5em;
+    background: transparent; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, $color-lightest, transparent); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, $color-lightest, transparent); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, $color-lightest, transparent); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, $color-lightest, transparent); /* Standard syntax */
+  }
+  .nav-shadow-right {
+    position:absolute;
+    top:0;
+    right:0px;
+    width:30px;
+    height:5em;
+    background: transparent; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(right, $color-lightest, transparent); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left, $color-lightest, transparent); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left, $color-lightest, transparent); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to left, $color-lightest, transparent); /* Standard syntax */
+  }
+}
+
+.share-nav {
+  @extend .page-nav;
+  background-color:$color-darkest;
+  ul {
+    padding:15px 10px;
+    li {
+      a {
+        padding:17px 10px;
+        color:white;
+        font-size:20px;
+        &:active, &:hover, &:focus {
+          color: $color-regular;
+        }
+      }
+    }
+  }
+}

@@ -69,8 +69,15 @@ class FacebookConnection:
             event = data.json()
 
             # Convert start and end times to datetime objects
-            event["end_time"] = datetime.strptime(event["end_time"], "%Y-%m-%dT%H:%M:%S-%f")
-            event["start_time"] = datetime.strptime(event["start_time"], "%Y-%m-%dT%H:%M:%S-%f")
+            if "start_time" in event.keys():
+                event["start_time"] = datetime.strptime(event["start_time"], "%Y-%m-%dT%H:%M:%S-%f")
+            else:
+                event["start_time"] = None
+
+            if "end_time" in event.keys():
+                event["end_time"] = datetime.strptime(event["end_time"], "%Y-%m-%dT%H:%M:%S-%f")
+            else:
+                event["end_time"] = None
 
             error = None
         else:

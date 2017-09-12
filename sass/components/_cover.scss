@@ -1,0 +1,37 @@
+/* Cover */
+.cover {
+  height:calc(100vh - 55px) !important;
+  min-height:450px;
+  @include vertical-align-wrapper;
+  .inner {
+    @include vertical-align;
+    text-align:center;
+    .btn {
+      margin-top:0.8em;
+    }
+  }
+}
+
+.cover-partial {
+  @extend .cover;
+  height:450px !important;
+}
+
+.cover-caption {
+  position:relative;
+  z-index:100;
+  @include vertical-align-wrapper;
+  background-color: $color-lightest;
+  color: $color-darkest;
+  height:55px;
+  width:100%;
+  .inner {
+    @include vertical-align;
+  }
+}
+
+.no-cssvhunit {
+  .cover {
+    height:450px;
+  }
+}

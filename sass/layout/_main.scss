@@ -1,0 +1,51 @@
+/* Main */
+#no-js-wrapper {
+  display:none;
+}
+
+.no-js {
+  #no-js-wrapper {
+    display:block;
+  }
+
+  #wrapper {
+    display:none;
+  }
+}
+
+.section {
+  .title {
+    margin-bottom:40px;
+  }
+}
+
+.section-page {
+  @extend .section;
+}
+
+.section-skinny {
+  @extend .section;
+}
+
+.section, .section-page, .section-skinny {
+  padding:40px 0;
+}
+
+.preview-content {
+  padding-left:30px;
+  padding-right:30px;
+}
+
+@include media-md {
+  .section {
+    padding:100px 0;
+  }
+
+  .section-page {
+    padding:80px 0;
+  }
+
+  .section-skinny {
+    padding:50px 0;
+  }
+}

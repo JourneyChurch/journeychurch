@@ -16,6 +16,12 @@
           <h1>{{ error }}</h1>
         </div>
       {% else %}
+        <div class="col-xs-12">
+          <a href="/events/all" class="btn btn-default">Church Schedule</a>
+        </div>
+
+        <br><br>
+
         {% for event in events %}
         <div class="col-sm-6 col-lg-4">
           <div id="cover-img-{{ event.cover.id }}" class="cover-img"></div>

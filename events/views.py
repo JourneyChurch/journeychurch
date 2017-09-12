@@ -108,23 +108,14 @@ def get_facebook_event(request, event_id, page_id=174276778638):
     except Social.DoesNotExist:
         social = None
 
-    # Check for start time and end time
-    if event["start_time"]:
-        start_time = event["start_time"]
-    else:
-        start_time = None
-
-    if event["end_time"]:
-        end_time = event["end_time"]
-    else:
-        end_time = None
-
     context = {
         "event": event,
         "error": error,
         "access_token": access_token,
         "api_version": FacebookConnection.api_version,
-        "date": format_date_month_day(start_time, end_time),
+        "date": format_date_month_day(event["start_time"], event["end_time"]),
+        "start_time": event["start_time"],
+        "end_time": event["end_time"],
         "social": social
     }
 

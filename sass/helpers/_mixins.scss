@@ -1,0 +1,139 @@
+/* Mixins */
+@mixin font-extra-light() {
+  font-family: "Gotham SSm 2r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
+  font-style: normal;
+  font-weight: 200;
+}
+
+@mixin font-light() {
+  font-family: "Gotham SSm 3r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
+  font-style: normal;
+  font-weight: 300;
+}
+
+@mixin font-book() {
+  font-family: "Gotham SSm 4r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin font-medium() {
+  font-family: "Gotham SSm 5r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
+  font-style: normal;
+  font-weight: 500;
+}
+
+@mixin font-bold() {
+  font-family: "Gotham SSm 7r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@mixin font-black() {
+  font-family: "Gotham SSm 8r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
+  font-style: normal;
+  font-weight: 800;
+}
+
+@mixin font-block {
+  text-transform:uppercase;
+  letter-spacing:0.23em;
+}
+
+@mixin font-block-extra-light() {
+  @include font-block;
+  @include font-extra-light;
+}
+
+@mixin font-block-light() {
+  @include font-block;
+  @include font-light;
+}
+
+@mixin font-block-book() {
+  @include font-block;
+  @include font-book;
+}
+
+@mixin font-block-medium() {
+  @include font-block;
+  @include font-medium;
+}
+
+@mixin font-block-bold() {
+  @include font-block;
+  @include font-bold;
+}
+
+@mixin font-block-black() {
+  @include font-block;
+  @include font-black;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin background-size-cover() {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@mixin vertical-align-wrapper() {
+  display:table !important;
+  width:100%;
+  height:100%;
+}
+
+@mixin vertical-align() {
+  display:table-cell !important;
+  vertical-align:middle;
+}
+
+@mixin media-xs() {
+  @media only screen and (min-width: $width-xs) {
+    @content;
+  }
+}
+
+@mixin media-xs-only() {
+  @media only screen and (min-width: $width-xs) and (max-width: $width-sm - 1px) {
+    @content;
+  }
+}
+
+@mixin media-sm() {
+  @media only screen and (min-width: $width-sm) {
+    @content;
+  }
+}
+
+@mixin media-sm-only() {
+  @media only screen and (min-width: $width-sm) and (max-width: $width-md - 1px) {
+    @content;
+  }
+}
+
+@mixin media-md() {
+  @media only screen and (min-width: $width-md) {
+    @content;
+  }
+}
+
+@mixin media-md-only() {
+  @media only screen and (min-width: $width-md) and (max-width: $width-lg - 1px) {
+    @content;
+  }
+}
+
+@mixin media-lg() {
+  @media only screen and (min-width: $width-lg) {
+    @content;
+  }
+}

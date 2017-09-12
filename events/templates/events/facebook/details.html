@@ -79,8 +79,8 @@
 
         <div class="col-sm-6">
           <h2>{{ event.name }}</h2>
-          <h5><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ date }}</h5>
-          <h5><i class="fa fa-clock-o" aria-hidden="true"></i> {{ event.start_time|date:"g:i a" }} - {{ event.end_time|date:"g:i a" }}</h5>
+          {% if date %}<h5><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ date }}</h5>{% endif %}
+          {% if start_time %}<h5><i class="fa fa-clock-o" aria-hidden="true"></i> {{ start_time|date:"g:i a" }}{% if end_time %} - {{ end_time|date:"g:i a" }}{% endif %}</h5>{% endif %}
           <h5><i class="fa fa-map-marker" aria-hidden="true"></i> {{ event.place.name }} | <a href="https://google.com/maps/?q={{ event.place.location.latitude }},{{ event.place.location.longitude }}">Directions</a> <i class="fa fa-angle-right" aria-hidden="true"></i></h4>
           <h5><i class="fa fa-check" aria-hidden="true"></i> {{ event.attending_count }} Attending via Facebook | <a href="https://facebook.com/{{ event.id }}">RSVP</a> <i class="fa fa-angle-right" aria-hidden="true"></i></h5>
           {% if ticket_uri %}<a href="{{ ticket_uri }}" class="btn btn-default">Register</a>{% endif %}
@@ -96,7 +96,7 @@
         <script>
           $(document).ready(function() {
             var twitterUrl = "https://twitter.com/intent/tweet";
-            var twitterMessage = "?text=Come join us {{ date }} for {{ event.name }}!";
+            var twitterMessage = "?text=Come join us{% if date %} {{ date }}{% endif %} for {{ event.name }}!";
             var shareUrl = "&url=http://journeychurch.tv/events/{{ event.id }}";
             var via = "{% if social %}&via={{ social.twitter }}{% endif %}";
 

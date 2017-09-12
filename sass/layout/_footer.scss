@@ -1,0 +1,46 @@
+/* Footer */
+
+#footer {
+  background-color: $color-darkest;
+  color: $color-lightest;
+  font-size:0.9em;
+  padding:50px 0;
+  .col-footer {
+    height:30px;
+  }
+  #help-button {
+    margin-top:25px;
+  }
+  p {
+    margin:0;
+  }
+  ul {
+    li {
+      display:inline-block;
+      margin:0 5px;
+      a {
+        color:$color-lightest;
+        @include font-extra-light;
+        @include transition(color 0.2s ease-in);
+        &:hover {
+          color: $color-dark;
+          @include transition(color 0.2s ease-in);
+        }
+      }
+      i {
+        font-size:1.2em;
+      }
+    }
+  }
+}
+
+@include media-sm {
+  #footer {
+    .col-footer {
+      height:60px;
+    }
+    #help-button {
+      margin-top:0;
+    }
+  }
+}
