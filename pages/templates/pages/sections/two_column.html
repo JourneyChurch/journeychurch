@@ -1,4 +1,4 @@
-<section id="section-{{ slug }}" {% if center_text %}class="text-center"{% endif %} {% if background_color or background_image %}style="{% if background_color %}background-color: #{{ background_color }};{% endif %}{% if background_image %}background-image: url('{{ background_image.url }}');{% endif %}"{% endif %}>
+<section id="section-{{ slug }}" style="{% if background_color %}background-color: #{{ background_color }};{% endif %}{% if background_image %}background-image: url('{{ background_image.url }}');{% endif %}" class="section {% if center_text %}center-text{% endif %}{% if background_image %} bg-img{% endif %}">
   <div class="container">
     <div class="row">
       {% if title %}<div class="col-xs-12">{{ title }}</div>{% endif %}

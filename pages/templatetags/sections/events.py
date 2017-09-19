@@ -46,7 +46,8 @@ def events(section):
     context = {
         "access_token": access_token,
         "events": events,
-        "social": social
+        "social": social,
+        "page_id": section.facebook_page_id
     }
 
     return context

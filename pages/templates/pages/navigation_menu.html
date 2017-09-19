@@ -1,14 +1,38 @@
 <!-- embeds navigation menu -->
-{% if navigation_items %}
-  <ul class="list-unstyled {% if inline is True %}list-inline{% endif %}">
-  {% for item in navigation_items %}
-    <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %} class="{% if current_slug == item.url %}active{% endif %}">{{ item.display_title }}</a></li>
-  {% endfor %}
-  </ul>
-{% endif %}
+{% if title == "Main" %}
+  <nav id="nav" role="navigation" class="nav">
+    <div class="vertical-align-wrapper">
+      <div class="vertical-align">
+        <ul>
+        {% for item in navigation_items %}
+          <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %} class="{% if current_slug == item.url %}active{% endif %}">{{ item.display_title }}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% elif title == "Footer" %}
 
-<style>
-  .active {
-    color:orange;
-  }
-</style>
+{% else %}
+  {% if navigation_items %}
+    <div id="page-nav" class="page-nav">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 no-gutter">
+            <div class="nav-shadow-left"></div>
+            <ul>
+              <div class="vertical-align-wrapper">
+                <div class="vertical-align">
+                  {% for item in navigation_items %}
+                    <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %} class="{% if current_slug == item.url %}active{% endif %}">{{ item.display_title }}</a></li>
+                  {% endfor %}
+                </div>
+              </div>
+            </ul>
+            <div class="nav-shadow-right"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

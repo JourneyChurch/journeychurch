@@ -245,11 +245,6 @@ hr {
   background-color:$color-lightest;
 }
 
-.no-gutter {
-  padding-left:30px;
-  padding-right:30px;
-}
-
 @include media-sm {
   body {
     font-size:12px;
@@ -276,11 +271,6 @@ hr {
   .content-right {
     padding-left:75px;
     display:block;
-  }
-
-  .no-gutter {
-    padding-left:0;
-    padding-right:0;
   }
 
   .pad-top {

@@ -2,28 +2,36 @@
 {% load social %}
 {% load content %}
 
-<section id="page-header">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1>{{ page.title }}</h1>
+<section id="page-header" class="cover-partial bg-img">
+  <style>
+    #page-header {
+      background-image:url("{{ page.background_image.url }}");
+    }
+  </style>
 
-        {% if page.subtitle %}
-          <h3>{{ page.subtitle }}</h3>
-        {% endif %}
+  <div class="inner-wrapper">
+    <div class="inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>{{ page.title }}</h1>
 
-        {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
+            {% if page.subtitle %}
+              <h3>{{ page.subtitle }}</h3>
+            {% endif %}
 
-        {% if page.menu %}
-          {% navigation_menu title=page.menu.title current_slug=current_slug inline=True %}
-        {% endif %}
+            {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
 
-        {% if page.social %}
-          {% social title=page.social.title %}
-        {% endif %}
-
-        {% if page.background_image %}<img src="{{ page.background_image.url }}" class="img-responsive">{% endif %}
+            {% if page.social %}
+              {% social title=page.social.title %}
+            {% endif %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+{% if page.menu %}
+  {% navigation_menu title=page.menu.title current_slug=current_slug inline=True %}
+{% endif %}

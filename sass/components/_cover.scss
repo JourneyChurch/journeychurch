@@ -1,13 +1,18 @@
 /* Cover */
 .cover {
+  position:relative;
+  margin-top:-110px;
   height:calc(100vh - 55px) !important;
   min-height:450px;
-  @include vertical-align-wrapper;
-  .inner {
-    @include vertical-align;
-    text-align:center;
-    .btn {
-      margin-top:0.8em;
+  z-index:0;
+  .inner-wrapper {
+    position:absolute;
+    @include vertical-align-wrapper;
+    .inner {
+      @include vertical-align;
+      .btn {
+        margin-top:0.8em;
+      }
     }
   }
 }

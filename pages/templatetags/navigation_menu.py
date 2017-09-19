@@ -25,4 +25,4 @@ def navigation_menu(current_slug, title='Main', inline=True):
     else:
         navigation_items = None
 
-    return {'navigation_items': navigation_items, 'current_slug':current_slug, 'inline': inline}
+    return {'navigation_items': navigation_items, 'current_slug':current_slug, 'inline': inline, 'title': title}
