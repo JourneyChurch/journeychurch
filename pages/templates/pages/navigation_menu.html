@@ -1,16 +1,18 @@
 <!-- embeds navigation menu -->
 {% if title == "Main" %}
-  <nav id="nav" role="navigation" class="nav">
-    <div class="vertical-align-wrapper">
-      <div class="vertical-align">
-        <ul>
-        {% for item in navigation_items %}
-          <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %} class="{% if current_slug == item.url %}active{% endif %}">{{ item.display_title }}</a></li>
-        {% endfor %}
-        </ul>
+  <div class="navigation-wrapper">
+    <nav id="nav" role="navigation" class="nav">
+      <div class="vertical-align-wrapper">
+        <div class="vertical-align">
+          <ul>
+          {% for item in navigation_items %}
+            <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %} class="{% if current_slug == item.url %}active{% endif %}">{{ item.display_title }}</a></li>
+          {% endfor %}
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 {% elif title == "Footer" %}
 
 {% else %}

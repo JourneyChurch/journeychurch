@@ -202,8 +202,7 @@ hr {
 }
 
 .no-gutter {
-  padding-left:0;
-  padding-right:0;
+  padding:0;
 }
 
 .no-gutter-left {
@@ -212,6 +211,14 @@ hr {
 
 .no-gutter-right {
   padding-right:0;
+}
+
+.no-gutter-top {
+  padding-top:0;
+}
+
+.no-gutter-bottom {
+  padding-bottom:0;
 }
 
 .two-column-mobile-wrapper {

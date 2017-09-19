@@ -3,7 +3,7 @@
   position:relative;
   margin-top:-110px;
   height:calc(100vh - 55px) !important;
-  min-height:450px;
+  min-height:500px;
   z-index:0;
   .inner-wrapper {
     position:absolute;
@@ -19,7 +19,7 @@
 
 .cover-partial {
   @extend .cover;
-  height:450px !important;
+  height:500px !important;
 }
 
 .cover-caption {
@@ -37,6 +37,6 @@
 
 .no-cssvhunit {
   .cover {
-    height:450px;
+    height:500px;
   }
 }
