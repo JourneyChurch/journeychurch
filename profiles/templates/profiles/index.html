@@ -10,16 +10,20 @@
 {% block content %}
   {% page_header_team page=page teams=teams current_slug=current_slug %}
 
-  <div class="container">
-    <div class="row">
-      {% for profile in profiles %}
-        <div class="col-sm-6 col-md-4">
-          <img src="{{ profile.image.url }}" class="img-responsive" />
-          <h4>{{ profile.title }}</h4>
-          <h5>{{ profile.job_title }}</h5>
-          <a href="/profiles/{{ profile.slug }}">More ></a>
-        </div>
-      {% endfor %}
+  <section id="section-team" class="section-short">
+    <div class="container">
+      <div class="row">
+        {% for profile in profiles %}
+          <div class="col-sm-6 col-md-4 profile">
+            <img src="{{ profile.image.url }}" class="img-responsive" />
+            <div class="caption">
+              <h4 class="font-light">{{ profile.title }}</h4>
+              <h5 class="font-light">{{ profile.job_title }}</h5>
+              <a href="/profiles/{{ profile.slug }}#section-profile">More<i class="fa fa-angle-right pointer" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-  </div>
+  </section>
 {% endblock %}

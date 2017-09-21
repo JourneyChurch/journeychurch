@@ -166,9 +166,6 @@ class SectionDefault(Content):
     # main content
     content = HTMLField(max_length=60000, null=True)
 
-    # main image
-    image = models.ImageField(upload_to="content/", max_length=200, blank=True, null=True)
-
     class Meta:
         """
         Plural name used in admin

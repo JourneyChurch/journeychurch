@@ -11,16 +11,24 @@
 {% block content %}
   {% page_header_team page=page teams=teams current_slug=current_slug %}
 
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <img src="{{ profile.image.url }}" class="img-responsive" />
-        <h1>{{ profile.title }}</h1>
-        <h3>{{ profile.job_title }}</h3>
-        <p>{{ profile.bio|safe }}</p>
-        <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
-        {% social title=profile.social.title %}
+  <section id="section-profile" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{{ profile.image.url }}" class="img-responsive" />
+        </div>
+
+        <div class="col-md-6">
+          <h1 class="font-extra-light">{{ profile.title }}</h1>
+          <h4 class="font-block-medium">{{ profile.job_title }}</h4>
+          <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+          {% social title=profile.social.title %}
+        </div>
+
+        <div class="col-md-9">
+          <p>{{ profile.bio|safe }}</p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 {% endblock %}

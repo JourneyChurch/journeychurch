@@ -66,7 +66,7 @@ p {
   margin:20px 0;
   font-size:1em;
   line-height:2.2em;
-  @include font-extra-light;
+  @include font-light;
 }
 
 blockquote {
@@ -84,13 +84,6 @@ hr {
   width:100%;
   border:0;
   margin:0;
-}
-
-@for $i from 1 through 12 {
-  .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i} {
-    padding-top:5px;
-    padding-bottom:5px;
-  }
 }
 
 .bg-img {
@@ -256,13 +249,6 @@ hr {
 @include media-sm {
   body {
     font-size:12px;
-  }
-
-  @for $i from 1 through 12 {
-    .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i} {
-      padding-top:0;
-      padding-bottom:0;
-    }
   }
 }
 

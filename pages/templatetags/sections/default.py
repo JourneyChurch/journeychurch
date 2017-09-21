@@ -14,8 +14,7 @@ def default(section):
         "slug": section.slug,
         "background_image": section.background_image,
         "background_color": section.background_color,
-        "content": section.content,
-        "image": section.image
+        "content": section.content
     }
 
     return context

@@ -101,7 +101,7 @@ class SectionDefaultAdmin(ContentAdmin):
     fieldsets = (
         EntryAdmin.fieldset,
         ('Section Fields', {
-            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order', 'content', 'image')
+            'fields': ('display_title', 'page', 'background_image', 'background_color', 'order', 'content')
         },)
     )
 

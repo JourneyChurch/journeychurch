@@ -1,34 +1,48 @@
 {% load social %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>{{ page.title }}</h1>
+<section id="page-header" class="cover-partial bg-img">
+  <style>
+    #page-header {
+      background-image:url("{{ page.background_image.url }}");
+    }
+  </style>
 
-      {% if page.subtitle %}
-        <h3>{{ page.subtitle }}</h3>
-      {% endif %}
+  <div class="inner-wrapper">
+    <div class="inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1 class="font-extra-light">{{ page.title }}</h1>
 
-      {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
+            {% if page.subtitle %}
+              <h3 class="font-extra-light">{{ page.subtitle }}</h3>
+            {% endif %}
 
-      <ul class="list-unstyled list-inline">
-          <li><a href="/team/" class="{% if current_slug == 'team' %}active{% endif %}">All</a></li>
-        {% for team in teams %}
-          <li><a href="/team/{{ team.slug }}" class="{% if current_slug == team.slug %}active{% endif %}">{{ team.title }}</a></li>
-        {% endfor %}
-      </ul>
+            {% if page.link_url and page.link_text %}<a href="{{ page.link_url }}">{{ page.link_text }}</a>{% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      {% if page.social %}
-        {% social title=page.social.title %}
-      {% endif %}
-
-      {% if page.background_image %}<img src="{{ page.background_image.url }}" class="img-responsive">{% endif %}
+<div id="page-nav" class="page-nav">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 no-gutter">
+        <div class="nav-shadow-left"></div>
+        <ul>
+          <div class="vertical-align-wrapper">
+            <div class="vertical-align">
+              <li><a href="/team#section-team" class="{% if current_slug == 'team' %}active{% endif %}">All</a></li>
+            {% for team in teams %}
+              <li><a href="/team/{{ team.slug }}#section-team" class="{% if current_slug == team.slug %}active{% endif %}">{{ team.title }}</a></li>
+            {% endfor %}
+            </div>
+          </div>
+        </ul>
+        <div class="nav-shadow-right"></div>
+      </div>
     </div>
   </div>
 </div>
-
-<style>
-    .active {
-      color:orange;
-    }
-</style>

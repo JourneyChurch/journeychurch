@@ -11,6 +11,7 @@
   &:hover, &:active, &:focus, &:active:hover {
     background-color: $color-darker;
     color: $color-lightest;
+    text-decoration:none;
     box-shadow:none;
     @include transition(background-color 0.2s ease-in, color 0.2s ease-in);
   }
