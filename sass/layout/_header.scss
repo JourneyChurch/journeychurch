@@ -32,6 +32,20 @@
     &:hover {
       background-color: rgba(0, 0, 0, 0.5);
       @include transition(background-color, ease-in, 0.25s);
+      .nav {
+        ul {
+          li {
+            a {
+              color:#D3D3D3;
+              @include transition(color, ease-in, 0.25s);
+              &:hover {
+                color:$color-lightest;
+                @include transition(color, ease-in, 0.25s);
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -39,7 +39,7 @@
     <header id="header" role="banner" class="header">
       <div class="container">
         <div class="row">
-          <div class="col-xs-3 col-sm-2 no-gutter-top no-gutter-bottom">
+          <div class="col-xs-6 col-sm-2 no-gutter-top no-gutter-bottom">
             <a href="/">
               <div class="logo">
                 <img src="/static/main/img/logo.png" class="img-responsive">
@@ -47,29 +47,21 @@
             </a>
           </div>
 
-          <div class="col-xs-9 col-sm-6 col-sm-offset-4 col-md-10 col-md-offset-0 no-gutter-top no-gutter-bottom">
-            <div class="nav-icon visible-xs visible-sm">
+          <div class="col-xs-6 col-sm-10 no-gutter-top no-gutter-bottom">
+            <div id="nav-icon" class="nav-icon visible-xs visible-sm">
               <span></span>
               <span></span>
             </div>
 
-            {% navigation_menu title="Main" current_slug=None inline=False %}
+            {% navigation_menu title="Main" current_slug=None %}
+
+            <div class="clearfix"></div>
           </div>
-
-          <!--<div class="col-sm-2">
-
-
-          </div>
-
-          <div class="clearfix"></div>
-        </div>-->
         </div>
-
-        <div class="clearfix"></div>
       </div>
     </header>
 
-    {# {% social title="JourneyChurch.tv" %} #}
+    {% navigation_menu title="Main" current_slug=None mobile=True %}
 
     <main id="main" role="main">
       {% block content %}

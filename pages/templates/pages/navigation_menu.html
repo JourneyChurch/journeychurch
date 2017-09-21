@@ -1,6 +1,20 @@
 <!-- embeds navigation menu -->
 {% if title == "Main" %}
-  <div class="navigation-wrapper">
+
+  {% if mobile %}
+  <div class="nav-mobile-wrapper">
+    <nav id="nav-mobile" role="navigation" class="nav-mobile">
+      <ul>
+      {% for item in navigation_items %}
+        <li><a href="{{ item.url }}" {% if item.new_tab %}target="_blank"{% endif %} class="{% if current_slug == item.url %}active{% endif %}">{{ item.display_title }}</a></li>
+      {% endfor %}
+      </ul>
+    </nav>
+  </div>
+
+  {% else %}
+
+  <div class="nav-wrapper">
     <nav id="nav" role="navigation" class="nav">
       <div class="vertical-align-wrapper">
         <div class="vertical-align">
@@ -13,6 +27,8 @@
       </div>
     </nav>
   </div>
+  {% endif %}
+
 {% elif title == "Footer" %}
 
 {% else %}

@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $(".nav-icon").click(function () {
-        $(".nav").fadeToggle(300);
+    $("#nav-icon").click(function() {
+        $(".nav-mobile").fadeToggle(300);
         $("body").toggleClass("nav-visible");
     });
 });

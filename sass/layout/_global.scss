@@ -4,6 +4,7 @@ body {
   @include font-book;
   background-color: $background-color;
   font-size:11px;
+  position:relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
