@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'social.apps.SocialConfig',
     'media.apps.MediaConfig',
     'events.apps.EventsConfig',
+    'careers.apps.CareersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -146,5 +147,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 # Tinymce settings http://django-tinymce.readthedocs.io/en/latest/installation.html
 # Even though this is empty it registers the default configuration. It can be found in the tinymce installed app settings.py
 TINYMCE_DEFAULT_CONFIG = {
-    
+
 }

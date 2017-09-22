@@ -5,6 +5,7 @@ body {
   background-color: $background-color;
   font-size:11px;
   position:relative;
+  font-weight:300;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,9 +38,6 @@ h6 {
 }
 
 ul {
-  list-style-type:none;
-  margin:0;
-  padding:0;
   li {
     a:hover {
       text-decoration:none;
@@ -65,7 +63,7 @@ a {
 p {
   margin:20px 0;
   font-size:1em;
-  line-height:2.2em;
+  line-height:2em;
   @include font-light;
 }
 

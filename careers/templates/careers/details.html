@@ -1,0 +1,27 @@
+<!-- Main template for basic pages -->
+{% extends "pages/base.html" %}
+
+{% block title %}
+  {{ page.title }}
+{% endblock %}
+
+{% block content %}
+
+  <section id="section-career" class="section-short">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <h1 class="font-extra-light">{{ career.title }}</h1>
+          {{ career.summary|safe }}
+          {{ career.description|safe }}
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-xs-12">
+          <a href="mailto:{{ career.contact_email }}" class="btn-default">Contact {{ career.contact_name }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

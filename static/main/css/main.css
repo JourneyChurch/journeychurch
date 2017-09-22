@@ -5823,7 +5823,8 @@ body {
   font-weight: 400;
   background-color: #F3F3F3;
   font-size: 11px;
-  position: relative; }
+  position: relative;
+  font-weight: 300; }
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.8em;
@@ -5847,12 +5848,8 @@ h5 {
 h6 {
   font-size: 0.8em; }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0; }
-  ul li a:hover {
-    text-decoration: none; }
+ul li a:hover {
+  text-decoration: none; }
 
 a {
   font-family: "Gotham SSm 4r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
@@ -5873,7 +5870,7 @@ a {
 p {
   margin: 20px 0;
   font-size: 1em;
-  line-height: 2.2em;
+  line-height: 2em;
   font-family: "Gotham SSm 3r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
   font-style: normal;
   font-weight: 300; }
@@ -6165,28 +6162,32 @@ hr {
     margin-top: 25px; }
   #footer p {
     margin: 0; }
-  #footer ul li {
-    display: inline-block;
-    margin: 0 5px; }
-    #footer ul li a {
-      color: white;
-      font-family: "Gotham SSm 2r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
-      font-style: normal;
-      font-weight: 200;
-      -webkit-transition: color 0.2s ease-in;
-      -moz-transition: color 0.2s ease-in;
-      -ms-transition: color 0.2s ease-in;
-      -o-transition: color 0.2s ease-in;
-      transition: color 0.2s ease-in; }
-      #footer ul li a:hover {
-        color: #464646;
+  #footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    #footer ul li {
+      display: inline-block;
+      margin: 0 5px; }
+      #footer ul li a {
+        color: white;
+        font-family: "Gotham SSm 2r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
+        font-style: normal;
+        font-weight: 200;
         -webkit-transition: color 0.2s ease-in;
         -moz-transition: color 0.2s ease-in;
         -ms-transition: color 0.2s ease-in;
         -o-transition: color 0.2s ease-in;
         transition: color 0.2s ease-in; }
-    #footer ul li i {
-      font-size: 1.2em; }
+        #footer ul li a:hover {
+          color: #464646;
+          -webkit-transition: color 0.2s ease-in;
+          -moz-transition: color 0.2s ease-in;
+          -ms-transition: color 0.2s ease-in;
+          -o-transition: color 0.2s ease-in;
+          transition: color 0.2s ease-in; }
+      #footer ul li i {
+        font-size: 1.2em; }
 
 @media only screen and (min-width: 798px) {
   #footer .col-footer {
@@ -6206,22 +6207,26 @@ hr {
   position: static;
   background-color: transparent;
   padding: 0; }
-  .nav ul li {
-    display: inline-block; }
-    .nav ul li a {
-      color: white;
-      text-transform: uppercase;
-      letter-spacing: 0.23em;
-      font-family: "Gotham SSm 5r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 0.9em;
-      padding: 15px 8px;
-      -webkit-transition: color, ease-in, 0.25s;
-      -moz-transition: color, ease-in, 0.25s;
-      -ms-transition: color, ease-in, 0.25s;
-      -o-transition: color, ease-in, 0.25s;
-      transition: color, ease-in, 0.25s; }
+  .nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+    .nav ul li {
+      display: inline-block; }
+      .nav ul li a {
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.23em;
+        font-family: "Gotham SSm 5r", "Gotham SSm A", "Gotham SSm B", "Work Sans", Arial;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.9em;
+        padding: 15px 8px;
+        -webkit-transition: color, ease-in, 0.25s;
+        -moz-transition: color, ease-in, 0.25s;
+        -ms-transition: color, ease-in, 0.25s;
+        -o-transition: color, ease-in, 0.25s;
+        transition: color, ease-in, 0.25s; }
 
 .nav-mobile-wrapper {
   position: absolute;
@@ -6241,6 +6246,9 @@ hr {
   z-index: 500;
   background-color: rgba(0, 0, 0, 0.8); }
   .nav-mobile ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     position: relative;
     top: 100px;
     padding: 30px; }
@@ -6315,7 +6323,10 @@ hr {
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    height: 5em; }
+    height: 5em;
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
     .page-nav ul li, .share-nav ul li {
       display: inline-block;
       margin: 0 3px; }
@@ -6802,14 +6813,12 @@ form input {
       margin-top: 0; }
 
 .career {
-  padding-top: 30px;
-  padding-bottom: 30px; }
-  .career .short-description {
-    height: 150px;
-    overflow-y: scroll; }
-
-@media only screen and (min-width: 798px) {
-  .career .short-description {
-    height: auto; } }
+  padding-top: 20px;
+  padding-bottom: 20px; }
+  .career .content {
+    padding: 30px;
+    background-color: white; }
+    .career .content h4 {
+      margin-top: 0; }
 
 /*# sourceMappingURL=main.css.map */

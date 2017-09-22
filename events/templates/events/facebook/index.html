@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+<section id="section-events" class="section">
   <div class="container">
     <div class="row">
       {% if error %}
@@ -20,6 +21,7 @@
           <a href="/events/all" class="btn btn-default">Church Schedule</a>
         </div>
 
+        <div class="clearfix"></div>
         <br><br>
 
         {% for event in events %}
@@ -53,4 +55,5 @@
       {% endif %}
     </div>
   </div>
+</section>
 {% endblock %}

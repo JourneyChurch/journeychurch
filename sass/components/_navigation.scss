@@ -12,6 +12,9 @@
   background-color:transparent;
   padding:0;
   ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
     li {
       display:inline-block;
       a {
@@ -44,6 +47,9 @@
   z-index:500;
   background-color:rgba(0, 0, 0, 0.8);
   ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
     position:relative;
     top:100px;
     padding:30px;
@@ -119,6 +125,9 @@
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     height:5em;
+    list-style-type:none;
+    margin:0;
+    padding:0;
     li {
       display:inline-block;
       margin:0 3px;

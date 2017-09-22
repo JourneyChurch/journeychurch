@@ -1,0 +1,25 @@
+<!-- Main template for basic pages -->
+{% extends "pages/base.html" %}
+
+{% block title %}
+  {{ page.title }}
+{% endblock %}
+
+{% block content %}
+
+  <section id="section-careers" class="section-short">
+    <div class="container">
+      <div class="row">
+        {% for career in careers %}
+          <div class="col-md-6 career">
+            <div class="content">
+              <h4 class="font-block-medium">{{ career.title }}</h4>
+              {{ career.summary|safe }}
+              <a href="/careers/{{ career.slug }}#section-career">Learn More<i class="fa fa-angle-right pointer" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}
